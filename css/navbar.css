@@ -1,0 +1,20 @@
+.bg-active{
+    background-color: transparent !important;
+    transition: 0.3s;
+    color: #FF9900 !important;
+}
+
+.navbar{
+    width: 100%;
+    transition: 300ms;
+}
+
+.link-navbar{
+    color: #000000;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.link-navbar:hover{
+    color: #FF9900;
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35.729" height="35.729" viewBox="0 0 35.729 35.729">
+  <g id="icon" transform="translate(0.365 0.365)">
+    <g id="Rectangle">
+      <g id="Rectangle-2" data-name="Rectangle" fill="#f90" stroke="#fff" stroke-miterlimit="10" stroke-width="2.917">
+        <rect width="35" height="35" rx="13.854" stroke="none"/>
+        <rect x="1.458" y="1.458" width="32.083" height="32.083" rx="12.396" fill="none"/>
+      </g>
+      <rect id="Rectangle-3" data-name="Rectangle" width="35" height="35" rx="13.854" fill="none" stroke="#f90" stroke-miterlimit="10" stroke-width="0.729"/>
+    </g>
+    <g id="tick" transform="translate(10 12)">
+      <path id="Path" d="M15.766.239a.788.788,0,0,0-1.131,0L5.05,10.028,1.366,6.265a.788.788,0,0,0-1.131,0,.829.829,0,0,0,0,1.155l4.25,4.34a.788.788,0,0,0,1.131,0L15.766,1.395A.829.829,0,0,0,15.766.239Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>
