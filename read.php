@@ -31,7 +31,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
             <div class="container position-relative">
 
                 <div class="row justify-content-center">
-                    <h1 class="h2 bold-3 my-5 max-width-5x text-center">Halaman Untuk Mengubah Data</h1>
+                    <h1 class="h2 bold-3 my-5 max-width-5x text-center">Jumlah Populasi Ternak Sapi di Kabupaten Kediri</h1>
                 </div>
                 <div class="content read">
 
