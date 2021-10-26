@@ -12,6 +12,14 @@
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="css/leaflet-search.css">
     <link rel="stylesheet" href="css/leaflet-measure.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="../bs5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../icon/css/all.min.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <style>
         html,
         body,
@@ -26,8 +34,199 @@
 </head>
 
 <body>
+    <!--============================================================================ NAVBAR ==========================================================-->
+
+    <nav class="navbar navbar-expand-lg navbar-light mt-3 fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../assets/logo1.png" height="90px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="nav nav-pills">
+                    <li class="nav-item me-2">
+                        <a class="nav-link link-navbar" href="../index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link link-navbar" href="../profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link link-navbar" href="../read.php">Data dan Informasi</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link  active bg-active link-navbar" href="../map/index.php">Peta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../admin/login.php" class="nav-link btn-custom rounded" id="btn-sign">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <br><br><br><br><br>
+        <br><br><br>
+        <div class="row mb-2">
+            <div class="position-relative">
+                <div class="container position-relative">
+                    <div class="row justify-content-center">
+                        <h1 class="h2 bold-2 my-3 max-width-5x text-center">Peta Persebaran Masjid di Kota Semarang</h1>
+
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-lg-5">
+                            <a href="../read.php" class="btn btn-custom p-2 rounded shadow width-1n8x">Lihat Data</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    </nav>
+
+
+
+
+
     <div id="map">
     </div>
+
+    <br>
+    <!--============================================================================2. Feature ==========================================================-->
+
+    <div class="position-relative">
+
+        <div class="container position-relative">
+
+            <div class="row justify-content-center">
+                <h1 class="h2 bold-3 my-5 max-width-5x text-center">Alat untuk mempermudah melihat informasi pada peta</h1>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-lg-3">
+                    <div class="card border-0">
+                        <div class="card-body align">
+                            <div class="box bg-purple mb-4">
+                                <i class="fas fa-search-plus text-white ms-1"></i>
+                            </div>
+                            <h5 class="card-title bold-2 mb-3">Memperbesar & memperkecil</h5>
+                            <p class="card-text">
+                                Berfungsi untuk memperbesar dan mengecilkan tampilan pada peta
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card border-0">
+                        <div class="card-body align">
+                            <div class="box bg-yellow mb-4">
+                                <i class="fas fa-ruler text-white"></i>
+                            </div>
+                            <h5 class="card-title bold-2 mb-3">Pengukuran</h5>
+                            <p class="card-text">Berfungsi untuk mengukur jarak pada peta, satuan km</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card border-0">
+                        <div class="card-body align">
+                            <div class="box bg-red mb-4">
+                                <i class="fas fa-binoculars text-white"></i>
+                            </div>
+                            <h5 class="card-title bold-2 mb-3">Pencarian</h5>
+                            <p class="card-text">Berfungsi untuk mencari nama kecamatan pada peta</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card border-0">
+                        <div class="card-body align">
+                            <div class="box bg-blue mb-4">
+                                <i class="fas fa-layer-group text-white"></i>
+                            </div>
+                            <h5 class="card-title bold-2 mb-3">Data</h5>
+                            <p class="card-text">
+                                Berfungsi untuk menampilkan infromasi jumlah penduduk berdasarkan warna pada peta
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row my-5 justify-content-center">
+                <a href="../index.html" class="btn btn-custom p-3 rounded shadow width-2x bold-2">Beranda</a>
+            </div>
+
+        </div>
+    </div>
+    <!--============================================================================7. Marketin Strategis ==========================================================-->
+    <div class="container position-relative">
+
+    </div>
+
+    <div class="container position-relative">
+
+    </div>
+
+    <!--============================================================================8. Footer==========================================================-->
+    <div class="container">
+        <hr class="my-5">
+        <div class="row mb-5">
+
+            <div class="col-lg-3">
+                <a href="#">
+                    <img src="../assets/logo1.png" height="50px">
+                </a>
+                <h6><br></h6>
+            </div>
+            <div class="col-lg-3">
+                <h5>Quick Links</h5>
+                <br><br>
+                <a href="../profile.php" class="link-navbar">About Us</a><br>
+                <a href="#" class="link-navbar">Blog</a><br>
+                <a href="#" class="link-navbar">Contact</a><br>
+                <a href="#" class="link-navbar">FAQ</a><br>
+                <br>
+            </div>
+            <div class="col-lg-3">
+                <h5>Legal Stuff</h5>
+                <br><br>
+                <a href="#" class="link-navbar">Disclaimer</a><br>
+                <a href="#" class="link-navbar">Financing</a><br>
+                <a href="#" class="link-navbar">Privacy Policy</a><br>
+                <a href="#" class="link-navbar">Terms of Service</a><br>
+                <br>
+            </div>
+            <div class="col-lg-3">
+                <h5>2021 <b>Kevin Gilbert Toding</b>. Made with ❤️ using bootsrap and QGIS 3 Hannover.</h5>
+                <br>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Masukkan nomor Handphone anda" required>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-custom rounded shadow">Daftar Sekarang</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <br>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="../bs5/dist/js/bootstrap.bundle.js"></script>
+    <script src="../js/onscroll.js"></script>
+
     <script src="js/qgis2web_expressions.js"></script>
     <script src="js/leaflet.js"></script>
     <script src="js/leaflet.rotatedMarker.js"></script>
