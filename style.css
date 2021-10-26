@@ -107,7 +107,7 @@ body {
   	background-color: #fbfcfc;
 }
 .read table tbody tr:hover {
-  	background-color: #ff9900;
+  	background-color: #1977f3;
 }
 .read table tbody tr:hover td {
   	color: #FFFFFF;
@@ -145,7 +145,7 @@ body {
 	  border-radius: 5px;
 }
 .read table tbody tr td.actions .edit:hover {
-  	background-color: #ff9900;
+  	background-color: #1977f3;
 }
 .update form {
   	padding: 15px 0;

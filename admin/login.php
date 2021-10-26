@@ -63,7 +63,7 @@
                                                 <label class="custom-control-label" for="customCheck">Remember Me</label>
                                             </div>
                                         </div>
-                                        <input type="submit" value="login" class="btn btn-primary btn-user btn-block">
+                                        <input type="submit" value="Login" class="btn btn-primary btn-user btn-block">
 
                                         </a>
 
@@ -73,8 +73,9 @@
                                     <div class="text-center">
                                         <a class="small" href="#">Forgot Password?</a>
                                     </div>
+                                    <br>
                                     <div class="text-center">
-                                        <a class="small" href="#">Create an Account!</a>
+                                        <p style="font-size: 15px;">Masuk sebagai <b>admin</b> untuk mendapatkan hak akses penuh.</p>
                                     </div>
                                 </div>
                             </div>

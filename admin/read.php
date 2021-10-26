@@ -9,7 +9,7 @@ $records_per_page = 5;
 
 
 // Prepare the SQL statement and get records from our contacts table, LIMIT will determine the page
-$stmt = $pdo->prepare('SELECT * FROM ternak ORDER BY id LIMIT :current_page, :record_per_page');
+$stmt = $pdo->prepare('SELECT * FROM kontak ORDER BY id LIMIT :current_page, :record_per_page');
 $stmt->bindValue(':current_page', ($page - 1) * $records_per_page, PDO::PARAM_INT);
 $stmt->bindValue(':record_per_page', $records_per_page, PDO::PARAM_INT);
 $stmt->execute();
@@ -18,7 +18,7 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 // Get the total number of contacts, this is so we can determine whether there should be a next and previous button
-$num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
+$num_contacts = $pdo->query('SELECT COUNT(*) FROM kontak')->fetchColumn();
 ?>
 
 
@@ -57,8 +57,8 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
                                             <td>Kabupaten</td>
                                             <td>Kode Dagri</td>
                                             <td>Kecamatan</td>
-                                            <td>Jumlah Ternak Sapi</td>
-
+                                            <td>Jumlah Penduduk</td>
+                                            <td>Edit Data</td>
                                         </tr>
                                     </thead>
                             </div>
@@ -74,7 +74,10 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
                             <td><?= $contact['kodedagri'] ?></td>
                             <td><?= $contact['kecamatan'] ?></td>
                             <td><?= $contact['jml'] ?></td>
-
+                            <td class="actions">
+                                <a href="update.php?id=<?= $contact['id'] ?>" class="edit"><i class="fas fa-pen fa-xs" style="color: white;"></i></a>
+                                <a href="delete.php?id=<?= $contact['id'] ?>" class="trash"><i class="fas fa-trash fa-xs" style="color: white;"></i></a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

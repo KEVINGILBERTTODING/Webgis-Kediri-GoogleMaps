@@ -1,7 +1,7 @@
 .bg-active{
     background-color: transparent !important;
     transition: 0.3s;
-    color: #FF9900 !important;
+    color: #1977f3 !important;
 }
 
 .navbar{
@@ -16,5 +16,5 @@
 }
 
 .link-navbar:hover{
-    color: #FF9900;
+    color: #1977f3;
 }
