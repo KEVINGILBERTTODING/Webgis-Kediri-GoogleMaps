@@ -48,7 +48,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Login as Admin</h1>
                                     </div>
                                     <form class="user" method="POST" action="login_action.php">
                                         <div class="form-group">
@@ -88,7 +88,7 @@
 
     </div>
     </div>
-    <br><br><br>
+    <br><br>
     <!--============================================================================8. Footer==========================================================-->
     <div class="container">
         <hr class="my-5">
