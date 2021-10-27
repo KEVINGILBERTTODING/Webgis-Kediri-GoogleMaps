@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - 404</title>
+  <title>SB Admin 2 - Blank</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -108,8 +108,8 @@
             <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item active" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
+            <a class="collapse-item" href="404.html">404 Page</a>
+            <a class="collapse-item active" href="blank.html">Blank Page</a>
           </div>
         </div>
       </li>
@@ -331,18 +331,56 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- 404 Error Text -->
-          <div class="text-center">
-            <div class="error mx-auto" data-text="404">404</div>
-            <p class="lead text-gray-800 mb-5">Page Not Found</p>
-            <p class="text-gray-500 mb-0">It looks like you found a glitch in the matrix...</p>
-            <a href="index.html">&larr; Back to Dashboard</a>
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800">Create an Account</h1>
+          <div class="container">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+              <div class="card-body p-4">
+                <!-- Nested Row within Card Body -->
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                  </div>
+                  <form class="user">
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Username">
+                    </div>
+
+                    <div class="form-group">
+                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Full Name">
+                    </div>
+                    <div class="form-group">
+                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      </div>
+                      <div class="col-sm-6">
+                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                      </div>
+                    </div>
+                    <a href="login.html" class="btn btn-primary btn-user btn-block">
+                      Register Account
+                    </a>
+
+                  </form>
+
+
+                </div>
+              </div>
+            </div>
           </div>
+
+
+
 
         </div>
         <!-- /.container-fluid -->
 
       </div>
+
       <!-- End of Main Content -->
 
       <!-- Footer -->
