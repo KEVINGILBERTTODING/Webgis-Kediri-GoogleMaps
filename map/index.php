@@ -74,15 +74,19 @@
             <div class="position-relative">
                 <div class="container position-relative">
                     <div class="row justify-content-center">
-                        <h1 class="h2 bold-2 my-3 max-width-5x text-center">Peta Persebaran Masjid di Kota Semarang</h1>
+                        <h2 class="hw bold-2 my-3 max-width-5x text-center">
+                            Persebaran Populasi Ternak Sapi dan Persebaran Peternakan Sapi di Kabupaten Kediri
+                        </h2>
 
                     </div>
+                    <br>
                     <div class="row my-4">
                         <div class="col-lg-5">
                             <a href="../read.php" class="btn btn-custom p-2 rounded shadow width-1n8x">Lihat Data</a>
                         </div>
-                    </div>
 
+                    </div>
+                    <hr>
                 </div>
 
             </div>
@@ -90,9 +94,7 @@
 
     </div>
     </nav>
-
-
-
+    <!--------------------------------- CONTENT PETA ----------------------------------------------------------->
 
 
     <div id="map">

@@ -9,7 +9,7 @@ $records_per_page = 5;
 
 
 // Prepare the SQL statement and get records from our contacts table, LIMIT will determine the page
-$stmt = $pdo->prepare('SELECT * FROM ternak ORDER BY id LIMIT :current_page, :record_per_page');
+$stmt = $pdo->prepare('SELECT * FROM peternakan ORDER BY id LIMIT :current_page, :record_per_page');
 $stmt->bindValue(':current_page', ($page - 1) * $records_per_page, PDO::PARAM_INT);
 $stmt->bindValue(':record_per_page', $records_per_page, PDO::PARAM_INT);
 $stmt->execute();
@@ -18,7 +18,7 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 // Get the total number of contacts, this is so we can determine whether there should be a next and previous button
-$num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
+$num_contacts = $pdo->query('SELECT COUNT(*) FROM peternakan')->fetchColumn();
 ?>
 
 
@@ -31,14 +31,14 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
             <div class="container position-relative">
 
                 <div class="row justify-content-center">
-                    <h1 class="h2 bold-3 my-5 max-width-5x text-center">Populasi Ternak Sapi di Kabupaten Kediri</h1>
+                    <h1 class="h2 bold-3 my-5 max-width-5x text-center">Data Peternakan Sapi di Kabupaten Kediri</h1>
                 </div>
                 <div class="content read">
 
                     <h2>Tampilan Data</h2>
                     <div class="row my-4">
                         <div class="col-lg-5">
-                            <a href="read2.php" class="btn btn-custom p-2 rounded shadow width-1n8x">Data Peternakan</a>
+                            <a href="read.php" class="btn btn-custom p-2 rounded shadow width-1n8x">Data Jumlah Ternak</a>
                         </div>
                         <div class="col-lg-7">
                             <br>
@@ -52,13 +52,11 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
                                 <table>
                                     <thead>
                                         <tr>
-                                            <td>#</td>
-                                            <td>Provinsi</td>
-                                            <td>Kabupaten</td>
-                                            <td>Kode Dagri</td>
-                                            <td>Kecamatan</td>
-                                            <td>Jumlah Ternak Sapi</td>
-
+                                            <td>ID</td>
+                                            <td>Nama Peternakan</td>
+                                            <td>Alamat</td>
+                                            <td>Latitude</td>
+                                            <td>Longitude</td>
                                         </tr>
                                     </thead>
                             </div>
@@ -69,11 +67,10 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
                     <?php foreach ($contacts as $contact) : ?>
                         <tr>
                             <td><?= $contact['id'] ?></td>
-                            <td><?= $contact['provinsi'] ?></td>
-                            <td><?= $contact['kabupaten'] ?></td>
-                            <td><?= $contact['kodedagri'] ?></td>
-                            <td><?= $contact['kecamatan'] ?></td>
-                            <td><?= $contact['jml'] ?></td>
+                            <td><?= $contact['nama'] ?></td>
+                            <td><?= $contact['alamat'] ?></td>
+                            <td><?= $contact['lat'] ?></td>
+                            <td><?= $contact['lng'] ?></td>
 
                         </tr>
                     <?php endforeach; ?>
@@ -81,10 +78,10 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
                 </table>
                 <div class="pagination">
                     <?php if ($page > 1) : ?>
-                        <a href="read.php?page=<?= $page - 1 ?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
+                        <a href="read2.php?page=<?= $page - 1 ?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
                     <?php endif; ?>
                     <?php if ($page * $records_per_page < $num_contacts) : ?>
-                        <a href="read.php?page=<?= $page + 1 ?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
+                        <a href="read2.php?page=<?= $page + 1 ?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
                     <?php endif; ?>
                 </div>
             </div>
