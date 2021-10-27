@@ -1,3 +1,30 @@
+<?php
+include '../functions.php';
+$pdo = pdo_connect_mysql();
+$msg = '';
+// Check if POST data is not empty
+if (!empty($_POST)) {
+  // Post data not empty insert a new record
+  // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
+  $id_user = isset($_POST['id_user']) && !empty($_POST['id_user']) && $_POST['id_user'] != 'auto' ? $_POST['id_user'] : NULL;
+  // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
+  $username = isset($_POST['username']) ? $_POST['username'] : '';
+  $nama = isset($_POST['nama']) ? $_POST['nama'] : '';
+  $email = isset($_POST['email']) ? $_POST['email'] : '';
+  $password = isset($_POST['password']) ? $_POST['password'] : '';
+
+
+
+  // Insert new record into the contacts table
+  $stmt = $pdo->prepare('INSERT INTO user VALUES (?, ?, ?, ?,?)');
+  $stmt->execute([$id_user, $username, $nama, $email, $password]);
+  // Output message
+  $msg = 'Created Successfully!';
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -342,28 +369,28 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                   </div>
-                  <form class="user">
+                  <form class="user" action="add_user.php" method="POST">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Username">
+                      <input type="text" class="form-control form-control-user" id="id_user" placeholder="ID" name="id_user" readonly>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username">
                     </div>
 
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Full Name">
+                      <input type="text" class="form-control form-control-user" id="nama" placeholder="Full Name" name="nama">
                     </div>
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                      <input type="email" class="form-control form-control-user" id="email" placeholder="Email Address" name="email">
                     </div>
                     <div class="form-group row">
                       <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                        <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="password">
                       </div>
-                      <div class="col-sm-6">
-                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
-                      </div>
+
                     </div>
-                    <a href="login.html" class="btn btn-primary btn-user btn-block">
-                      Register Account
-                    </a>
+                    <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
+
 
                   </form>
 
@@ -417,7 +444,7 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="index.php">Logout</a>
         </div>
       </div>
     </div>

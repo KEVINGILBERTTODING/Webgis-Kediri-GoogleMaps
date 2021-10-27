@@ -4,7 +4,7 @@ session_start();
 include "koneksi.php";
 
 $username = $_POST["username"];
-$p = md5($_POST["password"]);
+$p = ($_POST["password"]);
 
 $sql = "select * from user where username='" . $username . "' and password='" . $p . "' limit 1";
 $hasil = mysqli_query($kon, $sql);
