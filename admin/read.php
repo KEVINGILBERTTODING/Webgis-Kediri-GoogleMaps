@@ -1,4 +1,22 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["username"])) {
+    echo "Anda harus login dulu <br><a href='login.php'>Klik disini</a>";
+    header("Location: login.php");
+    exit;
+}
+
+$id_user = $_SESSION["id_user"];
+$username = $_SESSION["username"];
+$nama = $_SESSION["nama"];
+$email = $_SESSION["email"];
+
+
+
+?>
+
+<?php
 include 'functions.php';
 // Connect to MySQL database
 $pdo = pdo_connect_mysql();

@@ -47,7 +47,7 @@ function template_header($title)
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="nav nav-pills">
                     <li class="nav-item me-2">
-                        <a class="nav-link link-navbar" href="index.html">Beranda</a>
+                        <a class="nav-link link-navbar" href="index.php">Beranda</a>
                     </li>
                     <li class="nav-item me-2">
                         <a class="nav-link link-navbar" href="profile.php">Profile</a>
@@ -60,7 +60,7 @@ function template_header($title)
                     </li>
                    
                     <li class="nav-item">
-                        <a href="admin/login.php" class="nav-link btn-custom rounded" id="btn-sign">Login</a>
+                        <a href="admin/index.php" class="nav-link btn-custom rounded" id="btn-sign">Login</a>
                     </li>
                 </ul>
 

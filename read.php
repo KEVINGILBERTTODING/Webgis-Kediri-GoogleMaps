@@ -52,7 +52,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
                                 <table>
                                     <thead>
                                         <tr>
-                                            <td>#</td>
+                                            <td>ID</td>
                                             <td>Provinsi</td>
                                             <td>Kabupaten</td>
                                             <td>Kode Dagri</td>

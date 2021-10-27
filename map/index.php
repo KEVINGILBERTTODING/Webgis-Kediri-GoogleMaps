@@ -47,7 +47,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="nav nav-pills">
                     <li class="nav-item me-2">
-                        <a class="nav-link link-navbar" href="../index.html">Beranda</a>
+                        <a class="nav-link link-navbar" href="../index.php">Beranda</a>
                     </li>
                     <li class="nav-item me-2">
                         <a class="nav-link link-navbar" href="../profile.php">Profile</a>
@@ -59,7 +59,7 @@
                         <a class="nav-link  active bg-active link-navbar" href="../map/index.php">Peta</a>
                     </li>
                     <li class="nav-item">
-                        <a href="../admin/login.php" class="nav-link btn-custom rounded" id="btn-sign">Login</a>
+                        <a href="../admin/index.php" class="nav-link btn-custom rounded" id="btn-sign">Login</a>
                     </li>
                 </ul>
             </div>
@@ -166,7 +166,7 @@
             </div>
 
             <div class="row my-5 justify-content-center">
-                <a href="../index.html" class="btn btn-custom p-3 rounded shadow width-2x bold-2">Beranda</a>
+                <a href="../index.php" class="btn btn-custom p-3 rounded shadow width-2x bold-2">Beranda</a>
             </div>
 
         </div>

@@ -42,9 +42,9 @@
                     <li class="nav-item me-2">
                         <a class="nav-link link-navbar" href="map/index.php">Peta</a>
                     </li>
-                    
+
                     <li class="nav-item">
-                        <a href="admin/login.php" class="nav-link btn-custom rounded" id="btn-sign">Login</a>
+                        <a href="admin/index.php" class="nav-link btn-custom rounded" id="btn-sign">Login</a>
                     </li>
                 </ul>
 
@@ -79,10 +79,10 @@
                     <h1 class="bold-3">Selamat Datang</h1>
                     <div class="desc mt-5 mb-2">
                         <p>
-                            WebGIS ini dirancang dan dibuat oleh <b>Kevin Gilbert Toding</b> dengan 
-                            tujuan untuk mendistribusikan, mempublikasikan, mengintegrasikan, mengkomunikasikan dan menyediakan informasi dalam bentuk teks, peta digital serta menjalankan fungsi-fungsi analisis dan query 
+                            WebGIS ini dirancang dan dibuat oleh <b>Kevin Gilbert Toding</b> dengan
+                            tujuan untuk mendistribusikan, mempublikasikan, mengintegrasikan, mengkomunikasikan dan menyediakan informasi dalam bentuk teks, peta digital serta menjalankan fungsi-fungsi analisis dan query
                             yang terkait dengan GIS melalui jaringan internet.
-                            Fasilitas yang tersedia: 
+                            Fasilitas yang tersedia:
 
                         </p>
                     </div>
@@ -106,7 +106,7 @@
                             Menampilkan data dan Informasi yang selalu terupdate.
                         </p>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -128,12 +128,12 @@
                         <div class="card-body align">
                             <div class="box bg-purple mb-4">
                                 <i class="fas fa-search-plus text-white ms-1"></i>
-              </div>
-                                    <h5 class="card-title bold-2 mb-3">Memperbesar & memperkecil</h5>
-                                         <p class="card-text">
-                                                Berfungsi untuk memperbesar dan mengecilkan tampilan pada peta
+                            </div>
+                            <h5 class="card-title bold-2 mb-3">Memperbesar & memperkecil</h5>
+                            <p class="card-text">
+                                Berfungsi untuk memperbesar dan mengecilkan tampilan pada peta
 
-                                        </p>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
                             </div>
                             <h5 class="card-title bold-2 mb-3">Agenda</h5>
                             <p class="card-text">
-                              Berfungsi untuk menampilkan keterangan mengenai simbol-simbol yang digunakan peta
+                                Berfungsi untuk menampilkan keterangan mengenai simbol-simbol yang digunakan peta
                             </p>
                         </div>
                     </div>
@@ -219,14 +219,14 @@
             </div>
             <div class="col-lg-3">
                 <h6>2021 <b>Kevin Gilbert Toding</b>. Made with ❤️ using bootsrap and QGIS 3 Hannover.</h5>
-                <br>
-                <form action="#" method="post">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Masukkan no Handphone anda" required>
-                    </div>
                     <br>
-                    <button type="submit" class="btn btn-custom rounded shadow">Daftar Sekarang</button>
-                </form>
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Masukkan no Handphone anda" required>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-custom rounded shadow">Daftar Sekarang</button>
+                    </form>
             </div>
 
         </div>

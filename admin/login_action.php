@@ -19,7 +19,7 @@ if ($jumlah > 0) {
     $_SESSION["email"] = $row["email"];
 
 
-    header("Location:user.php");
+    header("Location:dashboard.php");
 } else {
-    echo "Username atau password salah <br><a href='login.php'>Kembali</a>";
+    header("Location:login_failed.php");
 }
