@@ -26,7 +26,7 @@ $email = $_SESSION["email"];
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SDashboard</title>
+  <title>Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -47,8 +47,8 @@ $email = $_SESSION["email"];
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon">
+          <i class="fas fa-users-cog"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Kab. Kediri</div>
       </a>
