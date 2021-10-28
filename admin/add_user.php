@@ -68,7 +68,7 @@ if (!empty($_POST)) {
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -359,7 +359,7 @@ if (!empty($_POST)) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Create an Account</h1>
+          <h1 class="h3 mb-4 text-gray-800">Add User</h1>
           <div class="container">
 
             <div class="card o-hidden border-0 shadow-lg my-5">
@@ -388,6 +388,9 @@ if (!empty($_POST)) {
                         <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="password">
                       </div>
 
+                      <div class="col-sm-6">
+                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                      </div>
                     </div>
                     <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
 

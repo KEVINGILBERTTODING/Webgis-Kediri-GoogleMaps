@@ -64,7 +64,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="../admin/dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -365,7 +365,10 @@
 
 
             </div>
+
             <!-- End of Main Content -->
+
+
             <div id="map">
             </div>
 
@@ -374,7 +377,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2019</span>
+                        <span>Copyright &copy; Kevin Gilbert Toding 2021</span>
                     </div>
                 </div>
             </footer>
