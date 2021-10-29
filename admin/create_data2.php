@@ -37,6 +37,7 @@ if (!empty($_POST)) {
   $stmt->execute([$id, $nama, $alamat, $lat, $lng]);
   // Output message
   $msg = 'Created Successfully!';
+  header('Location: read2.php');
 }
 ?>
 

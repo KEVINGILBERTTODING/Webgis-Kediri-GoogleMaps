@@ -234,10 +234,10 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
                         <td><?= $contact['kecamatan'] ?></td>
                         <td><?= $contact['jml'] ?></td>
                         <td class="actions">
-                          <a href="#" class="btn btn-warning btn-circle">
+                          <a href=update_data.php?id=<?= $contact['id'] ?>" class="btn btn-warning btn-circle">
                             <i class="fas fa-edit"></i>
                           </a>
-                          <a href="#" class="btn btn-danger btn-circle">
+                          <a href="delete_data.php?id=<?= $contact['id'] ?>" class="btn btn-danger btn-circle">
                             <i class="fas fa-trash"></i>
                           </a>
                         </td>

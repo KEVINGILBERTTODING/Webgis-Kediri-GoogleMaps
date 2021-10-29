@@ -240,7 +240,7 @@ if (isset($_GET['id'])) {
                   <div class="text-center">
 
 
-                    <h2>Delete User ID #<?= $contact['id'] ?></h2>
+                    <h2>Delete Peternakan ID #<?= $contact['id'] ?></h2>
                     <?php if ($msg) : ?>
                       <p><?= $msg ?></p>
                     <?php else : ?>

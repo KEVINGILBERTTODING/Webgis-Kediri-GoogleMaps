@@ -7,7 +7,7 @@ if (!isset($_SESSION["username"])) {
   exit;
 }
 
-$id_user = $_SESSION["id_user"];
+$id = $_SESSION["id_user"];
 $username = $_SESSION["username"];
 $nama = $_SESSION["nama"];
 $email = $_SESSION["email"];
@@ -17,28 +17,34 @@ $email = $_SESSION["email"];
 ?>
 
 <?php
-include '../functions.php';
+include 'functions.php';
 $pdo = pdo_connect_mysql();
 $msg = '';
-// Check if POST data is not empty
-if (!empty($_POST)) {
-  // Post data not empty insert a new record
-  // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
-  $id_user = isset($_POST['id_user']) && !empty($_POST['id_user']) && $_POST['id_user'] != 'auto' ? $_POST['id_user'] : NULL;
-  // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
-  $username = isset($_POST['username']) ? $_POST['username'] : '';
-  $nama = isset($_POST['nama']) ? $_POST['nama'] : '';
-  $email = isset($_POST['email']) ? $_POST['email'] : '';
-  $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-
-
-  // Insert new record into the contacts table
-  $stmt = $pdo->prepare('INSERT INTO user VALUES (?, ?, ?, ?,?)');
-  $stmt->execute([$id_user, $username, $nama, $email, $password]);
-  // Output message
-  $msg = 'Created Successfully!';
-  header('Location: read_user.php');
+// Check that the contact ID exists
+if (isset($_GET['id'])) {
+  // Select the record that is going to be deleted
+  $stmt = $pdo->prepare('SELECT * FROM ternak WHERE id = ?');
+  $stmt->execute([$_GET['id']]);
+  $contact = $stmt->fetch(PDO::FETCH_ASSOC);
+  if (!$contact) {
+    exit('Contact doesn\'t exist with that ID!');
+  }
+  // Make sure the user confirms beore deletion
+  if (isset($_GET['confirm'])) {
+    if ($_GET['confirm'] == 'yes') {
+      // User clicked the "Yes" button, delete record
+      $stmt = $pdo->prepare('DELETE FROM ternak WHERE id = ?');
+      $stmt->execute([$_GET['id']]);
+      header('Location: read2.php');
+    } else {
+      // User clicked the "No" button, redirect them back to the read page
+      header('Location: read2.php');
+      exit;
+    }
+  }
+} else {
+  exit('No ID specified!');
 }
 ?>
 
@@ -55,7 +61,7 @@ if (!empty($_POST)) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Add User</title>
+  <title>Delete Data</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -224,7 +230,7 @@ if (!empty($_POST)) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Add User</h1>
+          <h1 class="h3 mb-4 text-gray-800">Delete Data Peternakan</h1>
           <div class="container">
 
             <div class="card o-hidden border-0 shadow-lg my-5">
@@ -232,34 +238,24 @@ if (!empty($_POST)) {
                 <!-- Nested Row within Card Body -->
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Register</h1>
+
+
+                    <h2>Delete Data ID #<?= $contact['id'] ?></h2>
+                    <?php if ($msg) : ?>
+                      <p><?= $msg ?></p>
+                    <?php else : ?>
+                      <p>Are you sure you want to delete <b><?= $contact['kecamatan'] ?>?</b></p>
+                      <div class="yesno">
+                        <a href="delete_data.php?id=<?= $contact['id'] ?>&confirm=yes" class="btn btn-success btn-circle">
+                          <i class="fas fa-check"></i> </a>
+                        <a href="read.php?id=<?= $contact['id'] ?>&confirm=no" class="btn btn-danger btn-circle">
+                          <i class="fas fa-times"></i>
+                        </a>
+                      </div>
+                    <?php endif; ?>
+
                   </div>
-                  <form class="user" action="add_user.php" method="POST">
-                    <div class="form-group">
-                      <input type="number" class="form-control form-control-user" id="id_user" placeholder="ID" name="id_user" readonly>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username">
-                    </div>
 
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="nama" placeholder="Full Name" name="nama">
-                    </div>
-                    <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="email" placeholder="Email Address" name="email">
-                    </div>
-                    <div class="form-group row">
-                      <div class="col-sm-6">
-                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Password">
-                      </div>
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="password">
-                      </div>
-                    </div>
-                    <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
-
-
-                  </form>
 
 
                 </div>
@@ -278,7 +274,7 @@ if (!empty($_POST)) {
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+      <footer class=" sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; Kevin Gilbert Toding 2021</span>

@@ -7,7 +7,7 @@ if (!isset($_SESSION["username"])) {
   exit;
 }
 
-$id_user = $_SESSION["id_user"];
+$id = $_SESSION["id_user"];
 $username = $_SESSION["username"];
 $nama = $_SESSION["nama"];
 $email = $_SESSION["email"];
@@ -17,30 +17,39 @@ $email = $_SESSION["email"];
 ?>
 
 <?php
-include '../functions.php';
+include 'functions.php';
 $pdo = pdo_connect_mysql();
 $msg = '';
-// Check if POST data is not empty
-if (!empty($_POST)) {
-  // Post data not empty insert a new record
-  // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
-  $id_user = isset($_POST['id_user']) && !empty($_POST['id_user']) && $_POST['id_user'] != 'auto' ? $_POST['id_user'] : NULL;
-  // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
-  $username = isset($_POST['username']) ? $_POST['username'] : '';
-  $nama = isset($_POST['nama']) ? $_POST['nama'] : '';
-  $email = isset($_POST['email']) ? $_POST['email'] : '';
-  $password = isset($_POST['password']) ? $_POST['password'] : '';
+// Check if the contact id exists, for example update.php?id=1 will get the contact with the id of 1
+if (isset($_GET['id'])) {
+  if (!empty($_POST)) {
+    // This part is similar to the create.php, but instead we update a record and not insert
+    $id = isset($_POST['id']) ? $_POST['id'] : NULL;
+    $nama = isset($_POST['nama']) ? $_POST['nama'] : '';
+    $alamat = isset($_POST['alamat']) ? $_POST['alamat'] : '';
+    $lat = isset($_POST['lat']) ? $_POST['lat'] : '';
+    $lng = isset($_POST['lng']) ? $_POST['lng'] : '';
 
 
 
-  // Insert new record into the contacts table
-  $stmt = $pdo->prepare('INSERT INTO user VALUES (?, ?, ?, ?,?)');
-  $stmt->execute([$id_user, $username, $nama, $email, $password]);
-  // Output message
-  $msg = 'Created Successfully!';
-  header('Location: read_user.php');
+    // Update the record
+    $stmt = $pdo->prepare('UPDATE peternakan SET id = ?, nama = ?, alamat = ?, lat = ?, lng = ? WHERE id = ?');
+    $stmt->execute([$id, $nama, $alamat, $lat, $lng,  $_GET['id']]);
+    $msg = 'Update Data Berhasil!';
+    header("Location: read2.php");
+  }
+  // Get the contact from the contacts table
+  $stmt = $pdo->prepare('SELECT * FROM peternakan WHERE id = ?');
+  $stmt->execute([$_GET['id']]);
+  $contact = $stmt->fetch(PDO::FETCH_ASSOC);
+  if (!$contact) {
+    exit('Contact doesn\'t exist with that id!');
+  }
+} else {
+  exit('No id specified!');
 }
 ?>
+
 
 
 
@@ -232,37 +241,38 @@ if (!empty($_POST)) {
                 <!-- Nested Row within Card Body -->
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Register</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Update Data #<?= $contact['id'] ?></h1>
+
                   </div>
-                  <form class="user" action="add_user.php" method="POST">
+                  <form class="user" action="update_data2.php?id=<?= $contact['id'] ?>" method="post">
                     <div class="form-group">
-                      <input type="number" class="form-control form-control-user" id="id_user" placeholder="ID" name="id_user" readonly>
+                      <input type="text" class="form-control form-control-user" value="<?= $contact['id'] ?>" id="id" placeholder="ID" name="id">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username">
+                      <input type="text" class="form-control form-control-user" value="<?= $contact['nama'] ?>" id="nama" placeholder="Nama Peternakan" name="nama">
                     </div>
 
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="nama" placeholder="Full Name" name="nama">
+                      <input type="text" class="form-control form-control-user" value="<?= $contact['alamat'] ?>" id="alamat" placeholder="Alamat Peternakan" name="alamat">
                     </div>
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="email" placeholder="Email Address" name="email">
+                      <input type="text" class="form-control form-control-user" value="<?= $contact['lat'] ?>" id="lat" placeholder="Latitude" name="lat">
                     </div>
-                    <div class="form-group row">
-                      <div class="col-sm-6">
-                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Password">
-                      </div>
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="password">
-                      </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" value="<?= $contact['lng'] ?>" id="lng" placeholder="Longitude" name="lng">
                     </div>
+
                     <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
+
 
 
                   </form>
 
 
                 </div>
+                <?php if ($msg) : ?>
+                  <p><?= $msg ?></p>
+                <?php endif; ?>
               </div>
             </div>
           </div>

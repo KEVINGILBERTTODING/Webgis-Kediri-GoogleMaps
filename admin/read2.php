@@ -216,7 +216,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM peternakan')->fetchColumn();
                     <tr>
                       <th>ID</th>
                       <th>Nama Peternakan</th>
-                      <th>Alamat</th>
+                      <th>Alamat Peternakan</th>
                       <th>Latitude</th>
                       <th>Longitude</th>
                       <th>Edit Data</th>
@@ -232,7 +232,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM peternakan')->fetchColumn();
                         <td><?= $contact['lat'] ?></td>
                         <td><?= $contact['lng'] ?></td>
                         <td class="actions">
-                          <a href="#" class="btn btn-warning btn-circle">
+                          <a href=update_data2.php?id=<?= $contact['id'] ?>" class="btn btn-warning btn-circle">
                             <i class="fas fa-edit"></i>
                           </a>
                           <a href="delete_data2.php?id=<?= $contact['id'] ?>" class="btn btn-danger btn-circle">

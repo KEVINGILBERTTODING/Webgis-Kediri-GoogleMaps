@@ -232,7 +232,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM user')->fetchColumn();
                         <td><?= $contact['email'] ?></td>
                         <td><?= $contact['password'] ?></td>
                         <td class="actions">
-                          <a href="#" class="btn btn-warning btn-circle">
+                          <a href="update_user.php?id_user=<?= $contact['id_user'] ?>" class="btn btn-warning btn-circle">
                             <i class="fas fa-edit"></i>
                           </a>
                           <a href="delete_user.php?id_user=<?= $contact['id_user'] ?>" class="btn btn-danger btn-circle">

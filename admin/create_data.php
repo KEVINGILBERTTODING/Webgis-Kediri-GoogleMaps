@@ -40,6 +40,7 @@ if (!empty($_POST)) {
   $stmt->execute([$id, $provinsi, $kabupaten, $kodedagri, $kecamatan, $jml]);
   // Output message
   $msg = 'Created Successfully!';
+  header('Location: read.php');
 }
 ?>
 
