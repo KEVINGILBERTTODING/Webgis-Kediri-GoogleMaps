@@ -30,7 +30,41 @@
 <body>
 
 
+    <!--============================================================================ NAVBAR ==========================================================-->
+    <nav class="navbar navbar-expand-lg navbar-light mt-3 fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../assets/logo1.png" height="90px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="nav nav-pills">
+                    <li class="nav-item me-2">
+                        <a class="nav-link active bg-active link-navbar" href="../index.php">Beranda</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link link-navbar" href="../profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link link-navbar" href="../read.php">Data dan Informasi</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link link-navbar" href="../map/index.php">Peta</a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a href="index.php" class="nav-link btn-custom rounded" id="btn-sign">Login</a>
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+
+    </nav>
+    <br><br>
     <!--============================================================================4. Product Manager ==========================================================-->
     <br><br><br>
     <div class="container">
@@ -86,6 +120,7 @@
             </div>
 
         </div>
+    </div>
 
     </div>
     </div>
