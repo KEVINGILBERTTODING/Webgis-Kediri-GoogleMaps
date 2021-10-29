@@ -17,27 +17,32 @@ $email = $_SESSION["email"];
 ?>
 
 <?php
-include 'functions.php';
-// Connect to MySQL database
+include '../functions.php';
 $pdo = pdo_connect_mysql();
-// Get the page via GET request (URL param: page), if non exists default the page to 1
-$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
-// Number of records to show on each page
-$records_per_page = 5;
+$msg = '';
+// Check if POST data is not empty
+if (!empty($_POST)) {
+  // Post data not empty insert a new record
+  // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
+  $id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
+  // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
+  $provinsi = isset($_POST['provinsi']) ? $_POST['provinsi'] : '';
+  $kabupaten = isset($_POST['kabupaten']) ? $_POST['kabupaten'] : '';
+  $kodedagri = isset($_POST['kodedagri']) ? $_POST['kodedagri'] : '';
+  $kecamatan = isset($_POST['kecamatan']) ? $_POST['kecamatan'] : '';
+  $jml = isset($_POST['jml']) ? $_POST['jml'] : '';
 
 
-// Prepare the SQL statement and get records from our contacts table, LIMIT will determine the page
-$stmt = $pdo->prepare('SELECT * FROM ternak ORDER BY id LIMIT :current_page, :record_per_page');
-$stmt->bindValue(':current_page', ($page - 1) * $records_per_page, PDO::PARAM_INT);
-$stmt->bindValue(':record_per_page', $records_per_page, PDO::PARAM_INT);
-$stmt->execute();
-// Fetch the records so we can display them in our template.
-$contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-// Get the total number of contacts, this is so we can determine whether there should be a next and previous button
-$num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
+  // Insert new record into the contacts table
+  $stmt = $pdo->prepare('INSERT INTO ternak VALUES (?, ?, ?, ?,?,?)');
+  $stmt->execute([$id, $provinsi, $kabupaten, $kodedagri, $kecamatan, $jml]);
+  // Output message
+  $msg = 'Created Successfully!';
+}
 ?>
+
 
 
 <!DOCTYPE html>
@@ -51,7 +56,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Show Data</title>
+  <title>Create New Data</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -71,7 +76,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="add_user.php">
         <div class="sidebar-brand-icon">
           <i class="fas fa-users-cog"></i>
         </div>
@@ -87,6 +92,10 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+
+
+
+
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -107,7 +116,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
             <h6 class="collapse-header">Interface:</h6>
             <a class="collapse-item" href="read_user.php">Show User</a>
             <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
-            <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
+            <a class="collapse-item" href="forgot-password.html">Peternakan Sapi</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="../map/map2.php">Show Map</a>
@@ -156,6 +165,25 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
 
 
             <div class="topbar-divider d-none d-sm-block"></div>
@@ -163,7 +191,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $nama; ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nama; ?></span>
                 <img class="img-profile rounded-circle" src="../assets/profile.png">
               </a>
               <!-- Dropdown - User Information -->
@@ -197,72 +225,55 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Show Data</h1>
-          <a href="create_data.php" class="btn btn-primary btn-icon-split">
-            <span class="icon text-white-50">
-              <i class="fas fa-plus-circle"></i>
-            </span>
-            <span class="text">Create New Data</span>
-          </a>
+          <h1 class="h3 mb-4 text-gray-800">Create New Data</h1>
+          <div class="container">
 
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Jumlah Populasi Ternak Sapi</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Provinsi</th>
-                      <th>Kabupaten</th>
-                      <th>Kodedagri</th>
-                      <th>Kecamatan</th>
-                      <th>Jumlah Sapi</th>
-                      <th>Edit Data</th>
-                    </tr>
-                  </thead>
+            <div class="card o-hidden border-0 shadow-lg my-5">
+              <div class="card-body p-4">
+                <!-- Nested Row within Card Body -->
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Add New Data</h1>
+                  </div>
+                  <form class="user" action="create_data.php" method="POST">
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="id" placeholder="ID" name="id" readonly>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="provinsi" placeholder="Provinsi" name="provinsi">
+                    </div>
 
-                  <tbody>
-                    <?php foreach ($contacts as $contact) : ?>
-                      <tr>
-                        <td><?= $contact['id'] ?></td>
-                        <td><?= $contact['provinsi'] ?></td>
-                        <td><?= $contact['kabupaten'] ?></td>
-                        <td><?= $contact['kodedagri'] ?></td>
-                        <td><?= $contact['kecamatan'] ?></td>
-                        <td><?= $contact['jml'] ?></td>
-                        <td class="actions">
-                          <a href="#" class="btn btn-warning btn-circle">
-                            <i class="fas fa-edit"></i>
-                          </a>
-                          <a href="#" class="btn btn-danger btn-circle">
-                            <i class="fas fa-trash"></i>
-                          </a>
-                        </td>
-                      </tr>
-                    <?php endforeach; ?>
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="kabupaten" placeholder="Kabupaten" name="kabupaten">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="kodedagri" placeholder="Kodedagri" name="kodedagri">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="kecamatan" placeholder="Kecamatan" name="kecamatan">
+                    </div>
+                    <div class="form-group">
+                      <input type="number" class="form-control form-control-user" id="jml" placeholder="Jumlah" name="jml">
+                    </div>
+                    <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
 
 
-                  </tbody>
-                </table>
-                <div class="pagination">
-                  <?php if ($page > 1) : ?>
-                    <a class="btn btn-primary btn-circle" href="read.php?page=<?= $page - 1 ?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
-                  <?php endif; ?>
-                  <?php if ($page * $records_per_page < $num_contacts) : ?>
-                    <a class="btn btn-primary btn-circle " href="read.php?page=<?= $page + 1 ?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
-                  <?php endif; ?>
+                  </form>
+
+
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
+
+
+
+        </div>
         <!-- /.container-fluid -->
 
       </div>
+
       <!-- End of Main Content -->
 
       <!-- Footer -->

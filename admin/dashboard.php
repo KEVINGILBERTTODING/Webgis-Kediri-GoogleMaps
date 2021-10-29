@@ -86,9 +86,9 @@ $email = $_SESSION["email"];
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Interface:</h6>
-            <a class="collapse-item" href="add_user.php">Add User</a>
+            <a class="collapse-item" href="read_user.php">Show User</a>
             <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
-            <a class="collapse-item" href="forgot-password.html">Peternakan Sapi</a>
+            <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="../map/map2.php">Show Map</a>
@@ -260,13 +260,13 @@ $email = $_SESSION["email"];
 
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
-              <a href="add_user.php" style="text-decoration: none;">
+              <a href="read_user.php" style="text-decoration: none;">
                 <div class="card border-left-primary shadow h-100 py-2">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">ADD USER</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">Menambahkan data admin</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Menambahkan User</div>
               </a>
             </div>
             <div class="col-auto">
@@ -299,23 +299,24 @@ $email = $_SESSION["email"];
 
   <!-- Earnings (Monthly) Card Example -->
   <div class="col-xl-3 col-md-6 mb-4">
+    <a href="read2.php" style="text-decoration: none;">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Show Data Peternakan sapi</div>
+              <div class="row no-gutters align-items-center">
+                <div class="h5 mb-0 font-weight-bold text-gray-800">Edit Data</div>
 
-    <div class="card border-left-info shadow h-100 py-2">
-      <div class="card-body">
-        <div class="row no-gutters align-items-center">
-          <div class="col mr-2">
-            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Show Data Peternakan sapi</div>
-            <div class="row no-gutters align-items-center">
-              <div class="h5 mb-0 font-weight-bold text-gray-800">Edit Data</div>
-
-            </div>
-          </div>
-          <div class="col-auto">
-            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-          </div>
-        </div>
-      </div>
-    </div>
+              </div>
+    </a>
+  </div>
+  <div class="col-auto">
+    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+  </div>
+  </div>
+  </div>
+  </div>
   </div>
 
   <!-- Pending Requests Card Example -->
@@ -357,7 +358,7 @@ $email = $_SESSION["email"];
   <footer class="sticky-footer bg-white">
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
-        <span>Copyright &copy; Your Website 2019</span>
+        <span>Copyright &copy; Kevin Gilbert Toding 2021</span>
       </div>
     </div>
   </footer>

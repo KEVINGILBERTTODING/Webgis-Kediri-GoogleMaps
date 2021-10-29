@@ -7,7 +7,7 @@ if (!isset($_SESSION["username"])) {
   exit;
 }
 
-$id_user = $_SESSION["id_user"];
+$id = $_SESSION["id_user"];
 $username = $_SESSION["username"];
 $nama = $_SESSION["nama"];
 $email = $_SESSION["email"];
@@ -18,26 +18,36 @@ $email = $_SESSION["email"];
 
 <?php
 include 'functions.php';
-// Connect to MySQL database
 $pdo = pdo_connect_mysql();
-// Get the page via GET request (URL param: page), if non exists default the page to 1
-$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
-// Number of records to show on each page
-$records_per_page = 5;
+$msg = '';
 
-
-// Prepare the SQL statement and get records from our contacts table, LIMIT will determine the page
-$stmt = $pdo->prepare('SELECT * FROM ternak ORDER BY id LIMIT :current_page, :record_per_page');
-$stmt->bindValue(':current_page', ($page - 1) * $records_per_page, PDO::PARAM_INT);
-$stmt->bindValue(':record_per_page', $records_per_page, PDO::PARAM_INT);
-$stmt->execute();
-// Fetch the records so we can display them in our template.
-$contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-// Get the total number of contacts, this is so we can determine whether there should be a next and previous button
-$num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
+// Check that the contact ID exists
+if (isset($_GET['id'])) {
+  // Select the record that is going to be deleted
+  $stmt = $pdo->prepare('SELECT * FROM peternakan WHERE id = ?');
+  $stmt->execute([$_GET['id']]);
+  $contact = $stmt->fetch(PDO::FETCH_ASSOC);
+  if (!$contact) {
+    exit('Contact doesn\'t exist with that ID!');
+  }
+  // Make sure the user confirms beore deletion
+  if (isset($_GET['confirm'])) {
+    if ($_GET['confirm'] == 'yes') {
+      // User clicked the "Yes" button, delete record
+      $stmt = $pdo->prepare('DELETE FROM peternakan WHERE id = ?');
+      $stmt->execute([$_GET['id']]);
+      header('Location: read2.php');
+    } else {
+      // User clicked the "No" button, redirect them back to the read page
+      header('Location: read2.php');
+      exit;
+    }
+  }
+} else {
+  exit('No ID specified!');
+}
 ?>
+
 
 
 <!DOCTYPE html>
@@ -51,7 +61,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Show Data</title>
+  <title>Delete Data</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -71,7 +81,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="add_user.php">
         <div class="sidebar-brand-icon">
           <i class="fas fa-users-cog"></i>
         </div>
@@ -87,6 +97,10 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+
+
+
+
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -107,7 +121,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
             <h6 class="collapse-header">Interface:</h6>
             <a class="collapse-item" href="read_user.php">Show User</a>
             <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
-            <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
+            <a class="collapse-item" href="forgot-password.html">Peternakan Sapi</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="../map/map2.php">Show Map</a>
@@ -156,6 +170,25 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li>
 
 
             <div class="topbar-divider d-none d-sm-block"></div>
@@ -163,7 +196,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $nama; ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nama; ?></span>
                 <img class="img-profile rounded-circle" src="../assets/profile.png">
               </a>
               <!-- Dropdown - User Information -->
@@ -197,76 +230,51 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Show Data</h1>
-          <a href="create_data.php" class="btn btn-primary btn-icon-split">
-            <span class="icon text-white-50">
-              <i class="fas fa-plus-circle"></i>
-            </span>
-            <span class="text">Create New Data</span>
-          </a>
+          <h1 class="h3 mb-4 text-gray-800">Delete Data Peternakan</h1>
+          <div class="container">
 
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Jumlah Populasi Ternak Sapi</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Provinsi</th>
-                      <th>Kabupaten</th>
-                      <th>Kodedagri</th>
-                      <th>Kecamatan</th>
-                      <th>Jumlah Sapi</th>
-                      <th>Edit Data</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <?php foreach ($contacts as $contact) : ?>
-                      <tr>
-                        <td><?= $contact['id'] ?></td>
-                        <td><?= $contact['provinsi'] ?></td>
-                        <td><?= $contact['kabupaten'] ?></td>
-                        <td><?= $contact['kodedagri'] ?></td>
-                        <td><?= $contact['kecamatan'] ?></td>
-                        <td><?= $contact['jml'] ?></td>
-                        <td class="actions">
-                          <a href="#" class="btn btn-warning btn-circle">
-                            <i class="fas fa-edit"></i>
-                          </a>
-                          <a href="#" class="btn btn-danger btn-circle">
-                            <i class="fas fa-trash"></i>
-                          </a>
-                        </td>
-                      </tr>
-                    <?php endforeach; ?>
+            <div class="card o-hidden border-0 shadow-lg my-5">
+              <div class="card-body p-4">
+                <!-- Nested Row within Card Body -->
+                <div class="p-5">
+                  <div class="text-center">
 
 
-                  </tbody>
-                </table>
-                <div class="pagination">
-                  <?php if ($page > 1) : ?>
-                    <a class="btn btn-primary btn-circle" href="read.php?page=<?= $page - 1 ?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
-                  <?php endif; ?>
-                  <?php if ($page * $records_per_page < $num_contacts) : ?>
-                    <a class="btn btn-primary btn-circle " href="read.php?page=<?= $page + 1 ?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
-                  <?php endif; ?>
+                    <h2>Delete User ID #<?= $contact['id'] ?></h2>
+                    <?php if ($msg) : ?>
+                      <p><?= $msg ?></p>
+                    <?php else : ?>
+                      <p>Are you sure you want to delete <b><?= $contact['nama'] ?>?</b></p>
+                      <div class="yesno">
+                        <a href="delete_data2.php?id=<?= $contact['id'] ?>&confirm=yes" class="btn btn-success btn-circle">
+                          <i class="fas fa-check"></i> </a>
+                        <a href="read2.php?id=<?= $contact['id'] ?>&confirm=no" class="btn btn-danger btn-circle">
+                          <i class="fas fa-times"></i>
+                        </a>
+                      </div>
+                    <?php endif; ?>
+
+                  </div>
+
+
+
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
+
+
+
+        </div>
         <!-- /.container-fluid -->
 
       </div>
+
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+      <footer class=" sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; Kevin Gilbert Toding 2021</span>

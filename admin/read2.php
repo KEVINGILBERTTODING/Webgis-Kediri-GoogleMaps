@@ -27,7 +27,7 @@ $records_per_page = 5;
 
 
 // Prepare the SQL statement and get records from our contacts table, LIMIT will determine the page
-$stmt = $pdo->prepare('SELECT * FROM ternak ORDER BY id LIMIT :current_page, :record_per_page');
+$stmt = $pdo->prepare('SELECT * FROM peternakan ORDER BY id LIMIT :current_page, :record_per_page');
 $stmt->bindValue(':current_page', ($page - 1) * $records_per_page, PDO::PARAM_INT);
 $stmt->bindValue(':record_per_page', $records_per_page, PDO::PARAM_INT);
 $stmt->execute();
@@ -36,7 +36,7 @@ $contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 // Get the total number of contacts, this is so we can determine whether there should be a next and previous button
-$num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
+$num_contacts = $pdo->query('SELECT COUNT(*) FROM peternakan')->fetchColumn();
 ?>
 
 
@@ -198,7 +198,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800">Show Data</h1>
-          <a href="create_data.php" class="btn btn-primary btn-icon-split">
+          <a href="create_data2.php" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
               <i class="fas fa-plus-circle"></i>
             </span>
@@ -207,7 +207,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
 
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Jumlah Populasi Ternak Sapi</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Data Peternakan Sapi</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -215,11 +215,10 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
                   <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Provinsi</th>
-                      <th>Kabupaten</th>
-                      <th>Kodedagri</th>
-                      <th>Kecamatan</th>
-                      <th>Jumlah Sapi</th>
+                      <th>Nama Peternakan</th>
+                      <th>Alamat</th>
+                      <th>Latitude</th>
+                      <th>Longitude</th>
                       <th>Edit Data</th>
                     </tr>
                   </thead>
@@ -228,16 +227,15 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
                     <?php foreach ($contacts as $contact) : ?>
                       <tr>
                         <td><?= $contact['id'] ?></td>
-                        <td><?= $contact['provinsi'] ?></td>
-                        <td><?= $contact['kabupaten'] ?></td>
-                        <td><?= $contact['kodedagri'] ?></td>
-                        <td><?= $contact['kecamatan'] ?></td>
-                        <td><?= $contact['jml'] ?></td>
+                        <td><?= $contact['nama'] ?></td>
+                        <td><?= $contact['alamat'] ?></td>
+                        <td><?= $contact['lat'] ?></td>
+                        <td><?= $contact['lng'] ?></td>
                         <td class="actions">
                           <a href="#" class="btn btn-warning btn-circle">
                             <i class="fas fa-edit"></i>
                           </a>
-                          <a href="#" class="btn btn-danger btn-circle">
+                          <a href="delete_data2.php?id=<?= $contact['id'] ?>" class="btn btn-danger btn-circle">
                             <i class="fas fa-trash"></i>
                           </a>
                         </td>
@@ -249,10 +247,10 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
                 </table>
                 <div class="pagination">
                   <?php if ($page > 1) : ?>
-                    <a class="btn btn-primary btn-circle" href="read.php?page=<?= $page - 1 ?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
+                    <a class="btn btn-primary btn-circle" href="read2.php?page=<?= $page - 1 ?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
                   <?php endif; ?>
                   <?php if ($page * $records_per_page < $num_contacts) : ?>
-                    <a class="btn btn-primary btn-circle " href="read.php?page=<?= $page + 1 ?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
+                    <a class="btn btn-primary btn-circle " href="read2.php?page=<?= $page + 1 ?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
                   <?php endif; ?>
                 </div>
               </div>

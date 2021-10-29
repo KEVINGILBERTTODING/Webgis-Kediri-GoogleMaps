@@ -70,9 +70,9 @@ $email = $_SESSION["email"];
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="map2.php">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-users-cog"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Kab. Kediri</div>
             </a>
@@ -107,9 +107,9 @@ $email = $_SESSION["email"];
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Interface:</h6>
-                        <a class="collapse-item" href="../admin/add_user.php">Add User</a>
+                        <a class="collapse-item" href="../admin/read_user.php">Show User</a>
                         <a class="collapse-item" href="../admin/read.php">Populasi Ternak Sapi</a>
-                        <a class="collapse-item" href="forgot-password.html">Peternakan Sapi</a>
+                        <a class="collapse-item" href="../admin/read2.php">Peternakan Sapi</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
                         <a class="collapse-item" href="../map/map2.php">Show Map</a>
@@ -186,7 +186,7 @@ $email = $_SESSION["email"];
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nama; ?></span>
-                                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                                <img class="img-profile rounded-circle" src="../assets/profile.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -219,7 +219,7 @@ $email = $_SESSION["email"];
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Peta Kab. Kediri</h1>
 
 
 
