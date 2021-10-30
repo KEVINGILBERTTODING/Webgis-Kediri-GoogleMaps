@@ -123,7 +123,7 @@ if (isset($_GET['id_user'])) {
             <h6 class="collapse-header">Interface:</h6>
             <a class="collapse-item" href="read_user.php">Show User</a>
             <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
-            <a class="collapse-item" href="forgot-password.html">Peternakan Sapi</a>
+            <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="../map/map2.php">Show Map</a>

@@ -102,9 +102,10 @@
 
             <div class="col-lg-12 d-block d-lg-none">
                 <center>
-                    <img src="assets/vector-effortless.svg" width="100%">
+                    <img src="assets/candi2.png" width="100%">
                 </center>
             </div>
+
 
             <div class="col-lg-6">
                 <div class="row">
@@ -116,27 +117,107 @@
                             Situs Tondowongso, yang ditemukan pada awal tahun 2007 dan berlokasi sekitar 15 km ke timur dari pusat Kota Kediri sekarang, memberikan indikasi merupakan kompleks permukiman penting.
                         </p>
                     </div>
-                    <h2 class="bold-3">Kecamatan</h1>
+                    <h2 class="bold-3">Visi</h1>
                         <div class="desc">
                             <p>
-                                Kabupaten Kediri terdiri dari 26 kecamatan, 1 kelurahan, dan 343 desa (dari total 666 kecamatan, 777 kelurahan, dan 7.724 desa di Jawa Timur). Pada tahun 2017, jumlah penduduknya mencapai 1.571.555 jiwa dengan luas wilayah 1.386,05 km² dan sebaran penduduk 1.133 jiwa/km².
+                                Terwujudnya masyarakat kabupaten kediri yang maju, berkarakter nasionalis-religius, serta sejahtera berdasarkan ekonomi kerakyatan yang didukung birokrasi yang melayani.
                             </p>
                         </div>
-                        <h2 class="bold-3">Agama</h1>
+                        <h2 class="bold-3">Misi</h1>
                             <div class="desc">
-                                <p>
-                                    Berdasarkan data Sensus Penduduk Badan Pusat Statistik tahun 2010, persentase agama penduduk Kabupaten Kediri adalah Islam 96,29%, kemudian Kristen Protestan 2,14%, Katolik 0,42%, Hindu 0,39%, kemudian Budha 0,02% dan Konghucu 0,01%.
-                                </p>
+                                <div class="d-flex desc">
+                                    <img src="assets/vector-check.svg" width="35px" class="me-3">
+                                    <p class="mt-3">
+                                        Pengembangan sumber daya manusia yang berkarakter nasionalis – religius
+                                    </p>
+                                </div>
+                                <div class="d-flex desc">
+                                    <img src="assets/vector-check.svg" width="35px" class="me-3">
+                                    <p class="mt-3">
+                                        Reformasi birokrasi dan pelayanan publik
+                                    </p>
+                                </div>
+                                <div class="d-flex desc">
+                                    <img src="assets/vector-check.svg" width="35px" class="me-3">
+                                    <p class="mt-3">
+                                        Pengembangan ekonomi kerakyatan dan peningkatan investasi daerah
+                                    </p>
+                                </div>
+                                <div class="d-flex desc">
+                                    <img src="assets/vector-check.svg" width="35px" class="me-3">
+                                    <p class="mt-3">
+                                        Peningkatan infrastruktur dan konektivitas antar wilayah
+                                    </p>
+                                </div>
+                                <div class="d-flex desc">
+                                    <img src="assets/vector-check.svg" width="35px" class="me-3">
+                                    <p class="mt-3">
+                                        Pengembangkan seni budaya, olahraga dan kreativitas pemuda
+                                    </p>
+                                </div>
                             </div>
+
+
                 </div>
             </div>
 
             <div class="col-lg-6 d-none d-lg-block">
-                <img src="assets/vector-effortless.svg" width="100%">
+                <img src="assets/candi2.png" width="100%">
             </div>
 
         </div>
     </div>
+    <!--============================================================================3. Effortless ==========================================================-->
+
+    <div class="container">
+        <div class="row mb-5">
+
+            <div class="col-lg-12 d-block d-lg-none">
+                <center>
+                    <img src="assets/chart.png" width="100%">
+                </center>
+            </div>
+
+
+            <div class="col-lg-6">
+                <div class="row">
+                    <h2 class="bold-3">Struktur Organisasi</h1>
+                        <div class="desc">
+                            <div class="d-flex desc">
+                                <img src="assets/vector-check.svg" width="35px" class="me-3">
+                                <p class="mt-3">
+                                    Kepala Bagian Organisasi
+                                </p>
+                            </div>
+                            <div class="d-flex desc">
+                                <img src="assets/vector-check.svg" width="35px" class="me-3">
+                                <p class="mt-3">
+                                    Kepala Sub Bagian Kelembagaan dan Analisis Jabatan
+                                </p>
+                            </div>
+                            <div class="d-flex desc">
+                                <img src="assets/vector-check.svg" width="35px" class="me-3">
+                                <p class="mt-3">
+                                    Kepala Sub Bagran Akuntabilitas dan Pemberdayaan Aparatur
+                                </p>
+                            </div>
+                            <div class="d-flex desc">
+                                <img src="assets/vector-check.svg" width="35px" class="me-3">
+                                <p class="mt-3">
+                                    Kepala Sub Bagian Ketatalaksanaan dan Pelayanan Publik
+                                </p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="assets/chart.png" width="100%">
+            </div>
+
+        </div>
+    </div>
+
 
     <!--============================================================================7. Marketin Strategis ==========================================================-->
     <div class="container position-relative">
