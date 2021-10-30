@@ -24,6 +24,7 @@ function template_header($title)
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Bootstrap CSS -->
     <link href="bs5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/logo2.png">
     <link rel="stylesheet" href="icon/css/all.min.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/body.css">

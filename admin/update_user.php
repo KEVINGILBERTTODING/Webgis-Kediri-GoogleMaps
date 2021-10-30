@@ -71,7 +71,7 @@ if (isset($_GET['id_user'])) {
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+  <link rel="shortcut icon" href="../assets/logo2.png">
 </head>
 
 <body id="page-top">
@@ -232,7 +232,7 @@ if (isset($_GET['id_user'])) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Add User</h1>
+          <h1 class="h3 mb-4 text-gray-800"><b>Update User</b></h1>
           <div class="container">
 
             <div class="card o-hidden border-0 shadow-lg my-5">

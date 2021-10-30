@@ -25,6 +25,7 @@ $email = $_SESSION["email"];
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <link rel="shortcut icon" href="../assets/logo2.png">
 
   <title>Dashboard</title>
 
@@ -38,6 +39,7 @@ $email = $_SESSION["email"];
 </head>
 
 <body id="page-top">
+
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -276,7 +278,6 @@ $email = $_SESSION["email"];
         </div>
       </div>
     </div>
-
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
       <a href="read.php" style="text-decoration: none;">

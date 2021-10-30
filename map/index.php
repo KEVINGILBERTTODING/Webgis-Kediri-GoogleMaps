@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="css/leaflet-search.css">
     <link rel="stylesheet" href="css/leaflet-measure.css">
-
+    <link rel="shortcut icon" href="../assets/logo2.png">
     <!-- Bootstrap CSS -->
     <link href="../bs5/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../icon/css/all.min.css">
@@ -30,7 +30,7 @@
             margin: 0;
         }
     </style>
-    <title></title>
+    <title>Peta Kab. Kediri</title>
 </head>
 
 <body>

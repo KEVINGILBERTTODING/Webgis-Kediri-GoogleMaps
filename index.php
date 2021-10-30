@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
+    <link rel="shortcut icon" href="assets/logo2.png">
     <link href="bs5/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="icon/css/all.min.css">
     <link rel="stylesheet" href="css/navbar.css">

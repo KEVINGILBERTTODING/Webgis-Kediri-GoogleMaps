@@ -59,7 +59,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+  <link rel="shortcut icon" href="../assets/logo2.png">
 </head>
 
 <body id="page-top">
@@ -197,7 +197,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM ternak')->fetchColumn();
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Show Data</h1>
+          <h1 class="h3 mb-4 text-gray-800"><b>Show Data</b></h1>
           <a href="create_data.php" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
               <i class="fas fa-plus-circle"></i>

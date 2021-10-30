@@ -38,8 +38,9 @@ $email = $_SESSION["email"];
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="css/leaflet-search.css">
     <link rel="stylesheet" href="css/leaflet-measure.css">
+    <link rel="shortcut icon" href="../assets/logo2.png">
 
-    <title>Map</title>
+    <title>Peta Kab. Kediri</title>
 
     <!-- Custom fonts for this template-->
     <link href="../admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -219,7 +220,7 @@ $email = $_SESSION["email"];
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Peta Kab. Kediri</h1>
+                    <h1 class="h3 mb-4 text-gray-800"><b>Peta Kab. Kediri</b></h1>
 
 
 
