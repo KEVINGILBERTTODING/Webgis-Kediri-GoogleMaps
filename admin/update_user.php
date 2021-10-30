@@ -36,6 +36,7 @@ if (isset($_GET['id_user'])) {
     $stmt = $pdo->prepare('UPDATE user SET id_user = ?, username = ?, nama = ?, email = ?, password = ? WHERE id_user = ?');
     $stmt->execute([$id_user, $username, $nama, $email, $password,  $_GET['id_user']]);
     $msg = 'Update Data Berhasil!';
+    header("Location: read_user.php");
   }
   // Get the contact from the contacts table
   $stmt = $pdo->prepare('SELECT * FROM user WHERE id_user = ?');
@@ -243,7 +244,7 @@ if (isset($_GET['id_user'])) {
                     <h1 class="h4 text-gray-900 mb-4">Update Data #<?= $contact['id_user'] ?></h1>
 
                   </div>
-                  <form class="user" action="update_user.php?id=<?= $contact['id_user'] ?>" method="post">
+                  <form class="user" action="update_user.php?id_user=<?= $contact['id_user'] ?>" method="post">
                     <div class="form-group">
                       <input type="number" class="form-control form-control-user" value="<?= $contact['id_user'] ?>" id="id_user" name="id_user" readonly>
                     </div>
@@ -257,18 +258,13 @@ if (isset($_GET['id_user'])) {
                     <div class="form-group">
                       <input type="email" class="form-control form-control-user" value="<?= $contact['email'] ?>" id="email" placeholder="Email Address" name="email">
                     </div>
-                    <div class="form-group row">
-                      <div class="col-sm-6">
-                        <input type="password" class="form-control form-control-user" value="<?= $contact['password'] ?>" id="exampleRepeatPassword" placeholder="Password" name="password">
-                      </div>
-
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" value="<?= $contact['password'] ?>" id="exampleRepeatPassword" placeholder="Password" name="password">
                     </div>
+
                     <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
 
-
                   </form>
-
-
                 </div>
                 <?php if ($msg) : ?>
                   <p><?= $msg ?></p>
