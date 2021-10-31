@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 25, 2021 at 03:24 PM
+-- Generation Time: Oct 30, 2021 at 05:15 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -103,6 +103,28 @@ INSERT INTO `ternak` (`id`, `provinsi`, `kabupaten`, `kodedagri`, `kecamatan`, `
 (12, 'Jawa Timur', 'Kediri', '64293', 'KEPUNG', 7365),
 (13, 'Jawa Timur', 'Kediri', '64294', 'KANDANGAN', 2769);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `username`, `nama`, `email`, `password`) VALUES
+(1, 'chkaz', 'chelsi chika', 'admin@dc.com', '12345'),
+(8, 'kevin', 'Kevin Gilbert Toding', 'kevintoding@yahoo.com', 'kevin12345');
+
 --
 -- Indexes for dumped tables
 --
@@ -118,6 +140,22 @@ ALTER TABLE `peternakan`
 --
 ALTER TABLE `ternak`
   ADD PRIMARY KEY (`kodedagri`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -35,10 +35,10 @@ if (isset($_GET['id'])) {
       // User clicked the "Yes" button, delete record
       $stmt = $pdo->prepare('DELETE FROM ternak WHERE id = ?');
       $stmt->execute([$_GET['id']]);
-      header('Location: read2.php');
+      header('Location: read.php');
     } else {
       // User clicked the "No" button, redirect them back to the read page
-      header('Location: read2.php');
+      header('Location: read.php');
       exit;
     }
   }

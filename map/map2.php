@@ -71,7 +71,7 @@ $email = $_SESSION["email"];
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="map2.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../admin/dashboard.php">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-users-cog"></i>
                 </div>
