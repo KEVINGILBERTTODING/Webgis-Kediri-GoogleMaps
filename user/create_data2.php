@@ -3,7 +3,7 @@ session_start();
 
 // cek apakah yang mengakses halaman ini sudah login
 if ($_SESSION['level'] == "") {
-  header("location:index.php?pesan=gagal");
+  header("location:../admin/index.php?pesan=gagal");
 }
 $nama = $_SESSION["nama"];
 ?>
@@ -18,21 +18,18 @@ if (!empty($_POST)) {
   // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
   $id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
   // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
-  $provinsi = isset($_POST['provinsi']) ? $_POST['provinsi'] : '';
-  $kabupaten = isset($_POST['kabupaten']) ? $_POST['kabupaten'] : '';
-  $kodedagri = isset($_POST['kodedagri']) ? $_POST['kodedagri'] : '';
-  $kecamatan = isset($_POST['kecamatan']) ? $_POST['kecamatan'] : '';
-  $jml = isset($_POST['jml']) ? $_POST['jml'] : '';
-
-
+  $nama = isset($_POST['nama']) ? $_POST['nama'] : '';
+  $alamat = isset($_POST['alamat']) ? $_POST['alamat'] : '';
+  $lat = isset($_POST['lat']) ? $_POST['lat'] : '';
+  $lng = isset($_POST['lng']) ? $_POST['lng'] : '';
 
 
   // Insert new record into the contacts table
-  $stmt = $pdo->prepare('INSERT INTO ternak VALUES (?, ?, ?, ?,?,?)');
-  $stmt->execute([$id, $provinsi, $kabupaten, $kodedagri, $kecamatan, $jml]);
+  $stmt = $pdo->prepare('INSERT INTO peternakan VALUES (?, ?, ?, ?,?)');
+  $stmt->execute([$id, $nama, $alamat, $lat, $lng]);
   // Output message
   $msg = 'Created Successfully!';
-  header('Location: read.php');
+  header('Location: read2.php');
 }
 ?>
 
@@ -52,11 +49,11 @@ if (!empty($_POST)) {
   <title>Create New Data</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link rel="shortcut icon" href="../assets/logo2.png">
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../admin/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -81,7 +78,7 @@ if (!empty($_POST)) {
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="dashboard.php">
+        <a class="nav-link" href="dashboard_user.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -112,7 +109,7 @@ if (!empty($_POST)) {
             <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="../map/map2.php">Show Map</a>
+            <a class="collapse-item" href="../map/map_user.php">Show Map</a>
           </div>
         </div>
       </li>
@@ -228,26 +225,24 @@ if (!empty($_POST)) {
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Add New Data</h1>
                   </div>
-                  <form class="user" action="create_data.php" method="POST">
+                  <form class="user" action="create_data2.php" method="POST">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="id" placeholder="ID" name="id" readonly required>
+                      <input type="text" class="form-control form-control-user" id="id" placeholder="ID" name="id" required>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="provinsi" placeholder="Provinsi" name="provinsi" required>
+                      <input type="text" class="form-control form-control-user" id="nama" placeholder="Nama Peternakan" name="nama" required>
                     </div>
 
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kabupaten" placeholder="Kabupaten" name="kabupaten" required>
+                      <input type="text" class="form-control form-control-user" id="alanmat" placeholder="Alamat Peternakan" name="alamat" required>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kodedagri" placeholder="Kodedagri" name="kodedagri" required>
+                      <input type="text" class="form-control form-control-user" id="lat" placeholder="Latitude" name="lat" required>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kecamatan" placeholder="Kecamatan" name="kecamatan" required>
+                      <input type="text" class="form-control form-control-user" id="lng" placeholder="Longitude" name="lng" required>
                     </div>
-                    <div class="form-group">
-                      <input type="number" class="form-control form-control-user" id="jml" placeholder="Jumlah" name="jml" required>
-                    </div>
+
                     <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
 
 
@@ -310,14 +305,14 @@ if (!empty($_POST)) {
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../admin/vendor/jquery/jquery.min.js"></script>
+  <script src="../admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="../admin/js/sb-admin-2.min.js"></script>
 
 </body>
 

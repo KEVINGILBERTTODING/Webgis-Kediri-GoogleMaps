@@ -1,18 +1,11 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["username"])) {
-  header("Location: index.php");
-  exit;
+// cek apakah yang mengakses halaman ini sudah login
+if ($_SESSION['level'] == "") {
+  header("location:index.php?pesan=gagal");
 }
-
-$id_user = $_SESSION["id_user"];
-$username = $_SESSION["username"];
 $nama = $_SESSION["nama"];
-$email = $_SESSION["email"];
-
-
-
 ?>
 
 <?php
@@ -23,18 +16,18 @@ $msg = '';
 if (!empty($_POST)) {
   // Post data not empty insert a new record
   // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
-  $id_user = isset($_POST['id_user']) && !empty($_POST['id_user']) && $_POST['id_user'] != 'auto' ? $_POST['id_user'] : NULL;
+  $id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
   // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
   $username = isset($_POST['username']) ? $_POST['username'] : '';
   $nama = isset($_POST['nama']) ? $_POST['nama'] : '';
-  $email = isset($_POST['email']) ? $_POST['email'] : '';
+  $level = isset($_POST['level']) ? $_POST['level'] : '';
   $password = isset($_POST['password']) ? $_POST['password'] : '';
 
 
 
   // Insert new record into the contacts table
   $stmt = $pdo->prepare('INSERT INTO user VALUES (?, ?, ?, ?,?)');
-  $stmt->execute([$id_user, $username, $nama, $email, $password]);
+  $stmt->execute([$id, $username, $nama, $level, $password]);
   // Output message
   header('Location: read_user.php');
 }
@@ -234,24 +227,24 @@ if (!empty($_POST)) {
                   </div>
                   <form class="user" action="add_user.php" method="POST">
                     <div class="form-group">
-                      <input type="number" class="form-control form-control-user" id="id_user" placeholder="ID" name="id_user" readonly>
+                      <input type="number" class="form-control form-control-user" id="id" placeholder="ID" name="id" readonly>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username">
+                      <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username" required>
                     </div>
 
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="nama" placeholder="Full Name" name="nama">
+                      <input type="text" class="form-control form-control-user" id="nama" placeholder="Full Name" name="nama" required>
                     </div>
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="email" placeholder="Email Address" name="email">
+                      <input type="level" class="form-control form-control-user" id="level" placeholder="level" name="level" required>
                     </div>
                     <div class="form-group row">
                       <div class="col-sm-6">
-                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Password">
+                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Password" required>
                       </div>
                       <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="password">
+                        <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="password" required </div>
                       </div>
                     </div>
                     <input type="submit" value="create" class="btn btn-primary btn-user btn-block">

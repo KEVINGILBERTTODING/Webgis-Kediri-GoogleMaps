@@ -7,37 +7,6 @@ if ($_SESSION['level'] == "") {
 }
 $nama = $_SESSION["nama"];
 ?>
-
-<?php
-include '../functions.php';
-$pdo = pdo_connect_mysql();
-$msg = '';
-// Check if POST data is not empty
-if (!empty($_POST)) {
-  // Post data not empty insert a new record
-  // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
-  $id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
-  // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
-  $provinsi = isset($_POST['provinsi']) ? $_POST['provinsi'] : '';
-  $kabupaten = isset($_POST['kabupaten']) ? $_POST['kabupaten'] : '';
-  $kodedagri = isset($_POST['kodedagri']) ? $_POST['kodedagri'] : '';
-  $kecamatan = isset($_POST['kecamatan']) ? $_POST['kecamatan'] : '';
-  $jml = isset($_POST['jml']) ? $_POST['jml'] : '';
-
-
-
-
-  // Insert new record into the contacts table
-  $stmt = $pdo->prepare('INSERT INTO ternak VALUES (?, ?, ?, ?,?,?)');
-  $stmt->execute([$id, $provinsi, $kabupaten, $kodedagri, $kecamatan, $jml]);
-  // Output message
-  $msg = 'Created Successfully!';
-  header('Location: read.php');
-}
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,19 +17,21 @@ if (!empty($_POST)) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <link rel="shortcut icon" href="../assets/logo2.png">
 
-  <title>Create New Data</title>
+  <title>Dashboard</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <link rel="shortcut icon" href="../assets/logo2.png">
+
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
+
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -69,7 +40,7 @@ if (!empty($_POST)) {
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="add_user.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
         <div class="sidebar-brand-icon">
           <i class="fas fa-users-cog"></i>
         </div>
@@ -80,11 +51,13 @@ if (!empty($_POST)) {
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+
+      <!-- Divider -->
 
 
 
@@ -116,6 +89,7 @@ if (!empty($_POST)) {
           </div>
         </div>
       </li>
+
 
 
       <!-- Divider -->
@@ -179,6 +153,56 @@ if (!empty($_POST)) {
             </li>
 
 
+
+            <!-- Dropdown - Messages -->
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+              <h6 class="dropdown-header">
+                Message Center
+              </h6>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                  <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
+                  <div class="status-indicator bg-success"></div>
+                </div>
+                <div class="font-weight-bold">
+                  <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
+                  <div class="small text-gray-500">Emily Fowler · 58m</div>
+                </div>
+              </a>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                  <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
+                  <div class="status-indicator"></div>
+                </div>
+                <div>
+                  <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
+                  <div class="small text-gray-500">Jae Chun · 1d</div>
+                </div>
+              </a>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                  <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
+                  <div class="status-indicator bg-warning"></div>
+                </div>
+                <div>
+                  <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
+                  <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                </div>
+              </a>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                  <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
+                  <div class="status-indicator bg-success"></div>
+                </div>
+                <div>
+                  <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
+                  <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                </div>
+              </a>
+              <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+            </div>
+            </li>
+
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
@@ -218,69 +242,105 @@ if (!empty($_POST)) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800"><b>Create New Data</b></h1>
-          <div class="container">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-600">Selamat Datang <b><?php echo $nama; ?></b></h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div>
 
-            <div class="card o-hidden border-0 shadow-lg my-5">
-              <div class="card-body p-4">
-                <!-- Nested Row within Card Body -->
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Add New Data</h1>
-                  </div>
-                  <form class="user" action="create_data.php" method="POST">
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="id" placeholder="ID" name="id" readonly required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="provinsi" placeholder="Provinsi" name="provinsi" required>
-                    </div>
-
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kabupaten" placeholder="Kabupaten" name="kabupaten" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kodedagri" placeholder="Kodedagri" name="kodedagri" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kecamatan" placeholder="Kecamatan" name="kecamatan" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="number" class="form-control form-control-user" id="jml" placeholder="Jumlah" name="jml" required>
-                    </div>
-                    <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
+          <!-- Content Row -->
+          <br>
+          <div class="row">
 
 
-                  </form>
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <a href="read.php" style="text-decoration: none;">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
 
-
-                </div>
-              </div>
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Show Data Populasi ternak sapi</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">Edit Data</div>
+              </a>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
             </div>
           </div>
-
-
-
-
         </div>
-        <!-- /.container-fluid -->
-
       </div>
-
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Kevin Gilbert Toding 2021</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
     </div>
-    <!-- End of Content Wrapper -->
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <a href="read2.php" style="text-decoration: none;">
+        <div class="card border-left-info shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Show Data Peternakan sapi</div>
+                <div class="row no-gutters align-items-center">
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">Edit Data</div>
+
+                </div>
+      </a>
+    </div>
+    <div class="col-auto">
+      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- Pending Requests Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <a href="../map/map2.php" style="text-decoration: none;">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">MAP</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">Menampilkan Peta</div>
+    </a>
+  </div>
+  <div class="col-auto">
+    <i class="fas fa-map-marked-alt fa-2x text-gray-300"></i>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- Content Row -->
+
+  <div class="row">
+
+
+
+    <!-- Approach -->
+
+  </div>
+  </div>
+  <!-- /.container-fluid -->
+
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; Kevin Gilbert Toding 2021</span>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
 
   </div>
   <!-- End of Page Wrapper -->
@@ -318,6 +378,13 @@ if (!empty($_POST)) {
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 

@@ -1,18 +1,11 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["username"])) {
-  header("Location: index.php");
-  exit;
+// cek apakah yang mengakses halaman ini sudah login
+if ($_SESSION['level'] == "") {
+  header("location:index.php?pesan=gagal");
 }
-
-$id = $_SESSION["id_user"];
-$username = $_SESSION["username"];
 $nama = $_SESSION["nama"];
-$email = $_SESSION["email"];
-
-
-
 ?>
 
 <?php

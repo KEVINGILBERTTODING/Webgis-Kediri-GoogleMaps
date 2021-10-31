@@ -1,18 +1,11 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["username"])) {
-  header("Location: index.php");
-  exit;
+// cek apakah yang mengakses halaman ini sudah login
+if ($_SESSION['level'] == "") {
+  header("location:index.php?pesan=gagal");
 }
-
-$id_user = $_SESSION["id_user"];
-$username = $_SESSION["username"];
 $nama = $_SESSION["nama"];
-$email = $_SESSION["email"];
-
-
-
 ?>
 
 <?php
@@ -234,20 +227,20 @@ if (!empty($_POST)) {
                   </div>
                   <form class="user" action="create_data2.php" method="POST">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="id" placeholder="ID" name="id">
+                      <input type="text" class="form-control form-control-user" id="id" placeholder="ID" name="id" required>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="nama" placeholder="Nama Peternakan" name="nama">
+                      <input type="text" class="form-control form-control-user" id="nama" placeholder="Nama Peternakan" name="nama" required>
                     </div>
 
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="alanmat" placeholder="Alamat Peternakan" name="alamat">
+                      <input type="text" class="form-control form-control-user" id="alanmat" placeholder="Alamat Peternakan" name="alamat" required>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="lat" placeholder="Latitude" name="lat">
+                      <input type="text" class="form-control form-control-user" id="lat" placeholder="Latitude" name="lat" required>
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="lng" placeholder="Longitude" name="lng">
+                      <input type="text" class="form-control form-control-user" id="lng" placeholder="Longitude" name="lng" required>
                     </div>
 
                     <input type="submit" value="create" class="btn btn-primary btn-user btn-block">

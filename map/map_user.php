@@ -63,7 +63,7 @@ $nama = $_SESSION["nama"];
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../admin/dashboard.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../user/dashboard_user.php">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-users-cog"></i>
                 </div>
@@ -75,7 +75,7 @@ $nama = $_SESSION["nama"];
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="../admin/dashboard.php">
+                <a class="nav-link" href="../user/dashboard_user.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -100,12 +100,11 @@ $nama = $_SESSION["nama"];
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Interface:</h6>
-                        <a class="collapse-item" href="../admin/read_user.php">Show User</a>
-                        <a class="collapse-item" href="../admin/read.php">Populasi Ternak Sapi</a>
-                        <a class="collapse-item" href="../admin/read2.php">Peternakan Sapi</a>
+                        <a class="collapse-item" href="../user/read.php">Populasi Ternak Sapi</a>
+                        <a class="collapse-item" href="../user/read2.php">Peternakan Sapi</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="../map/map2.php">Show Map</a>
+                        <a class="collapse-item" href="../map/map_user.php">Show Map</a>
                     </div>
                 </div>
             </li>

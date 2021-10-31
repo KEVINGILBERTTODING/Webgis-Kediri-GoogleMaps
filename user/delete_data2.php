@@ -3,7 +3,7 @@ session_start();
 
 // cek apakah yang mengakses halaman ini sudah login
 if ($_SESSION['level'] == "") {
-  header("location:index.php?pesan=gagal");
+  header("location:../admin/index.php?pesan=gagal");
 }
 $nama = $_SESSION["nama"];
 ?>
@@ -12,27 +12,31 @@ $nama = $_SESSION["nama"];
 include '../functions.php';
 $pdo = pdo_connect_mysql();
 $msg = '';
-// Check if POST data is not empty
-if (!empty($_POST)) {
-  // Post data not empty insert a new record
-  // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
-  $id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
-  // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
-  $provinsi = isset($_POST['provinsi']) ? $_POST['provinsi'] : '';
-  $kabupaten = isset($_POST['kabupaten']) ? $_POST['kabupaten'] : '';
-  $kodedagri = isset($_POST['kodedagri']) ? $_POST['kodedagri'] : '';
-  $kecamatan = isset($_POST['kecamatan']) ? $_POST['kecamatan'] : '';
-  $jml = isset($_POST['jml']) ? $_POST['jml'] : '';
 
-
-
-
-  // Insert new record into the contacts table
-  $stmt = $pdo->prepare('INSERT INTO ternak VALUES (?, ?, ?, ?,?,?)');
-  $stmt->execute([$id, $provinsi, $kabupaten, $kodedagri, $kecamatan, $jml]);
-  // Output message
-  $msg = 'Created Successfully!';
-  header('Location: read.php');
+// Check that the contact ID exists
+if (isset($_GET['id'])) {
+  // Select the record that is going to be deleted
+  $stmt = $pdo->prepare('SELECT * FROM peternakan WHERE id = ?');
+  $stmt->execute([$_GET['id']]);
+  $contact = $stmt->fetch(PDO::FETCH_ASSOC);
+  if (!$contact) {
+    exit('Contact doesn\'t exist with that ID!');
+  }
+  // Make sure the user confirms beore deletion
+  if (isset($_GET['confirm'])) {
+    if ($_GET['confirm'] == 'yes') {
+      // User clicked the "Yes" button, delete record
+      $stmt = $pdo->prepare('DELETE FROM peternakan WHERE id = ?');
+      $stmt->execute([$_GET['id']]);
+      header('Location: read2.php');
+    } else {
+      // User clicked the "No" button, redirect them back to the read page
+      header('Location: read2.php');
+      exit;
+    }
+  }
+} else {
+  exit('No ID specified!');
 }
 ?>
 
@@ -49,15 +53,15 @@ if (!empty($_POST)) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Create New Data</title>
+  <title>Delete Data</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <link rel="shortcut icon" href="../assets/logo2.png">
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+  <!-- Custom styles for this template-->
+  <link href="../admin/css/sb-admin-2.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="../assets/logo2.png">
 </head>
 
 <body id="page-top">
@@ -69,7 +73,7 @@ if (!empty($_POST)) {
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="add_user.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard_user.php">
         <div class="sidebar-brand-icon">
           <i class="fas fa-users-cog"></i>
         </div>
@@ -81,7 +85,7 @@ if (!empty($_POST)) {
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="dashboard.php">
+        <a class="nav-link" href="dashboard_user.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -107,12 +111,11 @@ if (!empty($_POST)) {
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Interface:</h6>
-            <a class="collapse-item" href="read_user.php">Show User</a>
             <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
             <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="../map/map2.php">Show Map</a>
+            <a class="collapse-item" href="../map/map_user.php">Show Map</a>
           </div>
         </div>
       </li>
@@ -218,7 +221,7 @@ if (!empty($_POST)) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800"><b>Create New Data</b></h1>
+          <h1 class="h3 mb-4 text-gray-800"><b>Delete Data Peternakan</b></h1>
           <div class="container">
 
             <div class="card o-hidden border-0 shadow-lg my-5">
@@ -226,32 +229,24 @@ if (!empty($_POST)) {
                 <!-- Nested Row within Card Body -->
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Add New Data</h1>
+
+
+                    <h2>Delete Peternakan ID #<?= $contact['id'] ?></h2>
+                    <?php if ($msg) : ?>
+                      <p><?= $msg ?></p>
+                    <?php else : ?>
+                      <p>Are you sure you want to delete <b><?= $contact['nama'] ?>?</b></p>
+                      <div class="yesno">
+                        <a href="delete_data2.php?id=<?= $contact['id'] ?>&confirm=yes" class="btn btn-success btn-circle">
+                          <i class="fas fa-check"></i> </a>
+                        <a href="read2.php?id=<?= $contact['id'] ?>&confirm=no" class="btn btn-danger btn-circle">
+                          <i class="fas fa-times"></i>
+                        </a>
+                      </div>
+                    <?php endif; ?>
+
                   </div>
-                  <form class="user" action="create_data.php" method="POST">
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="id" placeholder="ID" name="id" readonly required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="provinsi" placeholder="Provinsi" name="provinsi" required>
-                    </div>
 
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kabupaten" placeholder="Kabupaten" name="kabupaten" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kodedagri" placeholder="Kodedagri" name="kodedagri" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kecamatan" placeholder="Kecamatan" name="kecamatan" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="number" class="form-control form-control-user" id="jml" placeholder="Jumlah" name="jml" required>
-                    </div>
-                    <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
-
-
-                  </form>
 
 
                 </div>
@@ -270,7 +265,7 @@ if (!empty($_POST)) {
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+      <footer class=" sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; Kevin Gilbert Toding 2021</span>
@@ -310,14 +305,14 @@ if (!empty($_POST)) {
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../admin/vendor/jquery/jquery.min.js"></script>
+  <script src="../admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="../admin/js/sb-admin-2.min.js"></script>
 
 </body>
 

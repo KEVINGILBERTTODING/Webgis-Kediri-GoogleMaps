@@ -3,7 +3,7 @@ session_start();
 
 // cek apakah yang mengakses halaman ini sudah login
 if ($_SESSION['level'] == "") {
-  header("location:index.php?pesan=gagal");
+  header("location:../admin/index.php?pesan=gagal");
 }
 $nama = $_SESSION["nama"];
 ?>
@@ -112,7 +112,7 @@ if (!empty($_POST)) {
             <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="../map/map2.php">Show Map</a>
+            <a class="collapse-item" href="../map/map_user.php">Show Map</a>
           </div>
         </div>
       </li>

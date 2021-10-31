@@ -34,7 +34,7 @@
     <!--============================================================================ NAVBAR ==========================================================-->
     <nav class="navbar navbar-expand-lg navbar-light mt-3 fixed-top" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="../index.php">
                 <img src="../assets/logo1.png" height="90px">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="nav nav-pills">
                     <li class="nav-item me-2">
-                        <a class="nav-link active bg-active link-navbar" href="../index.php">Beranda</a>
+                        <a class="nav-link link-navbar" href="../index.php">Beranda</a>
                     </li>
                     <li class="nav-item me-2">
                         <a class="nav-link link-navbar" href="../profile.php">Profile</a>
@@ -85,12 +85,12 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login as Admin</h1>
                                     </div>
-                                    <form class="user" method="POST" action="login_action.php">
+                                    <form class="user" method="POST" action="cek_login.php">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" name="username" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username">
+                                            <input type="text" class="form-control form-control-user" name="username" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Username" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="password" id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" name="password" id="exampleInputPassword" placeholder="Password" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">

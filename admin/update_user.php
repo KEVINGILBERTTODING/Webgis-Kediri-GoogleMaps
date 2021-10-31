@@ -1,18 +1,11 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["username"])) {
-  header("Location: index.php");
-  exit;
+// cek apakah yang mengakses halaman ini sudah login
+if ($_SESSION['level'] == "") {
+  header("location:index.php?pesan=gagal");
 }
-
-$id_user = $_SESSION["id_user"];
-$username = $_SESSION["username"];
 $nama = $_SESSION["nama"];
-$email = $_SESSION["email"];
-
-
-
 ?>
 
 <?php
@@ -20,31 +13,31 @@ include 'functions.php';
 $pdo = pdo_connect_mysql();
 $msg = '';
 // Check if the contact id exists, for example update.php?id=1 will get the contact with the id of 1
-if (isset($_GET['id_user'])) {
+if (isset($_GET['id'])) {
   if (!empty($_POST)) {
     // This part is similar to the create.php, but instead we update a record and not insert
-    $id_user = isset($_POST['id_user']) ? $_POST['id_user'] : NULL;
+    $id = isset($_POST['id']) ? $_POST['id'] : NULL;
     $username = isset($_POST['username']) ? $_POST['username'] : '';
     $nama = isset($_POST['nama']) ? $_POST['nama'] : '';
-    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $level = isset($_POST['level']) ? $_POST['level'] : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
 
 
 
     // Update the record
-    $stmt = $pdo->prepare('UPDATE user SET id_user = ?, username = ?, nama = ?, email = ?, password = ? WHERE id_user = ?');
-    $stmt->execute([$id_user, $username, $nama, $email, $password,  $_GET['id_user']]);
+    $stmt = $pdo->prepare('UPDATE user SET id = ?, username = ?, nama = ?, level = ?, password = ? WHERE id = ?');
+    $stmt->execute([$id, $username, $nama, $level, $password,  $_GET['id']]);
     header("Location: read_user.php");
   }
   // Get the contact from the contacts table
-  $stmt = $pdo->prepare('SELECT * FROM user WHERE id_user = ?');
-  $stmt->execute([$_GET['id_user']]);
+  $stmt = $pdo->prepare('SELECT * FROM user WHERE id = ?');
+  $stmt->execute([$_GET['id']]);
   $contact = $stmt->fetch(PDO::FETCH_ASSOC);
   if (!$contact) {
-    exit('Contact doesn\'t exist with that id_user!');
+    exit('Contact doesn\'t exist with that id!');
   }
 } else {
-  exit('No id_user specified!');
+  exit('No id specified!');
 }
 ?>
 
@@ -239,12 +232,12 @@ if (isset($_GET['id_user'])) {
                 <!-- Nested Row within Card Body -->
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Update Data #<?= $contact['id_user'] ?></h1>
+                    <h1 class="h4 text-gray-900 mb-4">Update Data #<?= $contact['id'] ?></h1>
 
                   </div>
-                  <form class="user" action="update_user.php?id_user=<?= $contact['id_user'] ?>" method="post">
+                  <form class="user" action="update_user.php?id=<?= $contact['id'] ?>" method="post">
                     <div class="form-group">
-                      <input type="number" class="form-control form-control-user" value="<?= $contact['id_user'] ?>" id="id_user" name="id_user" readonly>
+                      <input type="number" class="form-control form-control-user" value="<?= $contact['id'] ?>" id="id" name="id" readonly>
                     </div>
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" value="<?= $contact['username'] ?>" id="username" placeholder="Username" name="username">
@@ -254,7 +247,7 @@ if (isset($_GET['id_user'])) {
                       <input type="text" class="form-control form-control-user" value="<?= $contact['nama'] ?>" id="nama" placeholder="Full Name" name="nama">
                     </div>
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" value="<?= $contact['email'] ?>" id="email" placeholder="Email Address" name="email">
+                      <input type="text" class="form-control form-control-user" value="<?= $contact['level'] ?>" id="level" placeholder="Level" name="level">
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" value="<?= $contact['password'] ?>" id="exampleRepeatPassword" placeholder="Password" name="password">

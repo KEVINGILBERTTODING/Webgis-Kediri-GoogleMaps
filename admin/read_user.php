@@ -1,20 +1,12 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["username"])) {
-  header("Location: index.php");
-  exit;
+// cek apakah yang mengakses halaman ini sudah login
+if ($_SESSION['level'] == "") {
+  header("location:index.php?pesan=gagal");
 }
-
-$id_user = $_SESSION["id_user"];
-$username = $_SESSION["username"];
 $nama = $_SESSION["nama"];
-$email = $_SESSION["email"];
-
-
-
 ?>
-
 <?php
 include 'functions.php';
 // Connect to MySQL database
@@ -26,7 +18,7 @@ $records_per_page = 5;
 
 
 // Prepare the SQL statement and get records from our contacts table, LIMIT will determine the page
-$stmt = $pdo->prepare('SELECT * FROM user ORDER BY id_user LIMIT :current_page, :record_per_page');
+$stmt = $pdo->prepare('SELECT * FROM user ORDER BY id LIMIT :current_page, :record_per_page');
 $stmt->bindValue(':current_page', ($page - 1) * $records_per_page, PDO::PARAM_INT);
 $stmt->bindValue(':record_per_page', $records_per_page, PDO::PARAM_INT);
 $stmt->execute();
@@ -216,7 +208,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM user')->fetchColumn();
                       <th>ID</th>
                       <th>Username</th>
                       <th>Nama Lengkap</th>
-                      <th>Email</th>
+                      <th>Level</th>
                       <th>Password</th>
                       <th>Edit Data</th>
                     </tr>
@@ -225,16 +217,16 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM user')->fetchColumn();
                   <tbody>
                     <?php foreach ($contacts as $contact) : ?>
                       <tr>
-                        <td><?= $contact['id_user'] ?></td>
+                        <td><?= $contact['id'] ?></td>
                         <td><?= $contact['username'] ?></td>
                         <td><?= $contact['nama'] ?></td>
-                        <td><?= $contact['email'] ?></td>
+                        <td><?= $contact['level'] ?></td>
                         <td><?= $contact['password'] ?></td>
                         <td class="actions">
-                          <a href="update_user.php?id_user=<?= $contact['id_user'] ?>" class="btn btn-warning btn-circle">
+                          <a href="update_user.php?id=<?= $contact['id'] ?>" class="btn btn-warning btn-circle">
                             <i class="fas fa-edit"></i>
                           </a>
-                          <a href="delete_user.php?id_user=<?= $contact['id_user'] ?>" class="btn btn-danger btn-circle">
+                          <a href="delete_user.php?id=<?= $contact['id'] ?>" class="btn btn-danger btn-circle">
                             <i class="fas fa-trash"></i>
                           </a>
                         </td>

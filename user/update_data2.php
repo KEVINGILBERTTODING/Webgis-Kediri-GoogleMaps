@@ -3,38 +3,44 @@ session_start();
 
 // cek apakah yang mengakses halaman ini sudah login
 if ($_SESSION['level'] == "") {
-  header("location:index.php?pesan=gagal");
+  header("location:../admin/index.php?pesan=gagal");
 }
 $nama = $_SESSION["nama"];
 ?>
 
 <?php
-include '../functions.php';
+include 'functions.php';
 $pdo = pdo_connect_mysql();
 $msg = '';
-// Check if POST data is not empty
-if (!empty($_POST)) {
-  // Post data not empty insert a new record
-  // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
-  $id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
-  // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
-  $provinsi = isset($_POST['provinsi']) ? $_POST['provinsi'] : '';
-  $kabupaten = isset($_POST['kabupaten']) ? $_POST['kabupaten'] : '';
-  $kodedagri = isset($_POST['kodedagri']) ? $_POST['kodedagri'] : '';
-  $kecamatan = isset($_POST['kecamatan']) ? $_POST['kecamatan'] : '';
-  $jml = isset($_POST['jml']) ? $_POST['jml'] : '';
+// Check if the contact id exists, for example update.php?id=1 will get the contact with the id of 1
+if (isset($_GET['id'])) {
+  if (!empty($_POST)) {
+    // This part is similar to the create.php, but instead we update a record and not insert
+    $id = isset($_POST['id']) ? $_POST['id'] : NULL;
+    $nama = isset($_POST['nama']) ? $_POST['nama'] : '';
+    $alamat = isset($_POST['alamat']) ? $_POST['alamat'] : '';
+    $lat = isset($_POST['lat']) ? $_POST['lat'] : '';
+    $lng = isset($_POST['lng']) ? $_POST['lng'] : '';
 
 
 
-
-  // Insert new record into the contacts table
-  $stmt = $pdo->prepare('INSERT INTO ternak VALUES (?, ?, ?, ?,?,?)');
-  $stmt->execute([$id, $provinsi, $kabupaten, $kodedagri, $kecamatan, $jml]);
-  // Output message
-  $msg = 'Created Successfully!';
-  header('Location: read.php');
+    // Update the record
+    $stmt = $pdo->prepare('UPDATE peternakan SET id = ?, nama = ?, alamat = ?, lat = ?, lng = ? WHERE id = ?');
+    $stmt->execute([$id, $nama, $alamat, $lat, $lng,  $_GET['id']]);
+    header("Location: read2.php");
+  }
+  // Get the contact from the contacts table
+  $stmt = $pdo->prepare('SELECT * FROM peternakan WHERE id = ?');
+  $stmt->execute([$_GET['id']]);
+  $contact = $stmt->fetch(PDO::FETCH_ASSOC);
+  if (!$contact) {
+    exit('Contact doesn\'t exist with that id!');
+  }
+} else {
+  exit('No id specified!');
 }
 ?>
+
 
 
 
@@ -49,7 +55,7 @@ if (!empty($_POST)) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Create New Data</title>
+  <title>Add User</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -218,7 +224,7 @@ if (!empty($_POST)) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800"><b>Create New Data</b></h1>
+          <h1 class="h3 mb-4 text-gray-800"><b>Update Data</b></h1>
           <div class="container">
 
             <div class="card o-hidden border-0 shadow-lg my-5">
@@ -226,35 +232,38 @@ if (!empty($_POST)) {
                 <!-- Nested Row within Card Body -->
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Add New Data</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Update Data ID #<?= $contact['id'] ?></h1>
+
                   </div>
-                  <form class="user" action="create_data.php" method="POST">
+                  <form class="user" action="update_data2.php?id=<?= $contact['id'] ?>" method="post">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="id" placeholder="ID" name="id" readonly required>
+                      <input type="text" class="form-control form-control-user" value="<?= $contact['id'] ?>" id="id" placeholder="ID" name="id">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="provinsi" placeholder="Provinsi" name="provinsi" required>
+                      <input type="text" class="form-control form-control-user" value="<?= $contact['nama'] ?>" id="nama" placeholder="Nama Peternakan" name="nama">
                     </div>
 
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kabupaten" placeholder="Kabupaten" name="kabupaten" required>
+                      <input type="text" class="form-control form-control-user" value="<?= $contact['alamat'] ?>" id="alamat" placeholder="Alamat Peternakan" name="alamat">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kodedagri" placeholder="Kodedagri" name="kodedagri" required>
+                      <input type="text" class="form-control form-control-user" value="<?= $contact['lat'] ?>" id="lat" placeholder="Latitude" name="lat">
                     </div>
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kecamatan" placeholder="Kecamatan" name="kecamatan" required>
+                      <input type="text" class="form-control form-control-user" value="<?= $contact['lng'] ?>" id="lng" placeholder="Longitude" name="lng">
                     </div>
-                    <div class="form-group">
-                      <input type="number" class="form-control form-control-user" id="jml" placeholder="Jumlah" name="jml" required>
-                    </div>
+
                     <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
+
 
 
                   </form>
 
 
                 </div>
+                <?php if ($msg) : ?>
+                  <p><?= $msg ?></p>
+                <?php endif; ?>
               </div>
             </div>
           </div>
