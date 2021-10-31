@@ -2,7 +2,6 @@
 session_start();
 
 if (!isset($_SESSION["username"])) {
-  echo "Anda harus login dulu <br><a href='login.php'>Klik disini</a>";
   header("Location: index.php");
   exit;
 }

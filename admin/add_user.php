@@ -2,7 +2,6 @@
 session_start();
 
 if (!isset($_SESSION["username"])) {
-  echo "Anda harus login dulu <br><a href='login.php'>Klik disini</a>";
   header("Location: index.php");
   exit;
 }
@@ -37,7 +36,6 @@ if (!empty($_POST)) {
   $stmt = $pdo->prepare('INSERT INTO user VALUES (?, ?, ?, ?,?)');
   $stmt->execute([$id_user, $username, $nama, $email, $password]);
   // Output message
-  $msg = 'Created Successfully!';
   header('Location: read_user.php');
 }
 ?>

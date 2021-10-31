@@ -2,7 +2,6 @@
 session_start();
 
 if (!isset($_SESSION["username"])) {
-  echo "Anda harus login dulu <br><a href='login.php'>Klik disini</a>";
   header("Location: index.php");
   exit;
 }
@@ -37,7 +36,6 @@ if (isset($_GET['id'])) {
     // Update the record
     $stmt = $pdo->prepare('UPDATE ternak SET id = ?, provinsi = ?, kabupaten = ?, kodedagri = ?, kecamatan = ?, jml = ? WHERE id = ?');
     $stmt->execute([$id, $provinsi, $kabupaten, $kodedagri, $kecamatan, $jml,  $_GET['id']]);
-    $msg = 'Update Data Berhasil!';
     header("Location: read.php");
   }
   // Get the contact from the contacts table
