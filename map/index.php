@@ -250,11 +250,11 @@
 
             if (e.target.feature.geometry.type === 'LineString') {
                 highlightLayer.setStyle({
-                    color: '#ffff00',
+                    color: '#0055ff',
                 });
             } else {
                 highlightLayer.setStyle({
-                    fillColor: '#ffff00',
+                    fillColor: '#0055ff',
                     fillOpacity: 1
                 });
             }
