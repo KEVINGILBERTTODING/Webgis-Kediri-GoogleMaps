@@ -234,7 +234,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM peternakan')->fetchColumn();
                         <td><?= $contact['lat'] ?></td>
                         <td><?= $contact['lng'] ?></td>
                         <td class="actions">
-                          <a href=update_data2.php?id=<?= $contact['id'] ?>" class="btn btn-warning btn-circle">
+                          <a href=update_data2.php?id=<?= $contact['id'] ?>" class="btn btn-primary btn-circle">
                             <i class="fas fa-edit"></i>
                           </a>
                           <a href="delete_data2.php?id=<?= $contact['id'] ?>" class="btn btn-danger btn-circle">

@@ -71,7 +71,7 @@ if (!empty($_POST)) {
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="add_user.php">
         <div class="sidebar-brand-icon">
-          <i class="fas fa-users-cog"></i>
+          <i class="fas fa-user-cog"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Kab. Kediri</div>
       </a>
@@ -87,37 +87,38 @@ if (!empty($_POST)) {
       </li>
 
 
-
-
-
       <!-- Divider -->
-      <hr class="sidebar-divider">
 
+      <hr class="sidebar-divider">
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Utilities
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Data</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Interface:</h6>
-            <a class="collapse-item" href="read_user.php">Show User</a>
+
             <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
             <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="../map/map2.php">Show Map</a>
+
           </div>
         </div>
       </li>
 
-
+      <hr class="sidebar-divider">
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+        <a class="nav-link" href="../map/map_user.php">
+          <i class="fas fa-fw fa-map-marker-alt"></i>
+          <span>Map</span></a>
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -223,7 +224,7 @@ if (!empty($_POST)) {
           <!-- Basic Card Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">New Data</h6>
             </div>
             <div class="card-body">
               <form class="user" action="create_data.php" method="POST">

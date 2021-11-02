@@ -93,36 +93,44 @@ if (isset($_GET['id'])) {
       </li>
 
 
-
-
-
       <!-- Divider -->
       <hr class="sidebar-divider">
-
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="read_user.php">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Users</span></a>
+      </li>
+      <hr class="sidebar-divider">
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Utilities
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Data</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Interface:</h6>
-            <a class="collapse-item" href="read_user.php">Show User</a>
+
             <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
             <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="../map/map2.php">Show Map</a>
+
           </div>
         </div>
       </li>
 
+      <hr class="sidebar-divider">
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+        <a class="nav-link" href="../map/map2.php">
+          <i class="fas fa-fw fa-map-marker-alt"></i>
+          <span>Map</span></a>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -219,53 +227,43 @@ if (isset($_GET['id'])) {
 
         </nav>
         <!-- End of Topbar -->
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800"><b>Update User</b></h1>
-          <div class="container">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-              <div class="card-body p-4">
-                <!-- Nested Row within Card Body -->
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Update Data #<?= $contact['id'] ?></h1>
-
-                  </div>
-                  <form class="user" action="update_user.php?id=<?= $contact['id'] ?>" method="post">
-                    <div class="form-group">
-                      <input type="number" class="form-control form-control-user" value="<?= $contact['id'] ?>" id="id" name="id" readonly>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" value="<?= $contact['username'] ?>" id="username" placeholder="Username" name="username">
-                    </div>
-
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" value="<?= $contact['nama'] ?>" id="nama" placeholder="Full Name" name="nama">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" value="<?= $contact['level'] ?>" id="level" placeholder="Level" name="level">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control form-control-user" value="<?= $contact['password'] ?>" id="exampleRepeatPassword" placeholder="Password" name="password">
-                    </div>
-
-                    <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
-
-                  </form>
-                </div>
-                <?php if ($msg) : ?>
-                  <p><?= $msg ?></p>
-                <?php endif; ?>
-              </div>
+          <!-- Basic Card Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
             </div>
+            <div class="card-body">
+              <form class="user" action="update_user.php?id=<?= $contact['id'] ?>" method="post">
+                <div class="form-group">
+                  <input type="number" class="form-control form-control-user" value="<?= $contact['id'] ?>" id="id" name="id" readonly>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" value="<?= $contact['username'] ?>" id="username" placeholder="Username" name="username">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" value="<?= $contact['nama'] ?>" id="nama" placeholder="Full Name" name="nama">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" value="<?= $contact['level'] ?>" id="level" placeholder="Level" name="level">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control form-control-user" value="<?= $contact['password'] ?>" id="exampleRepeatPassword" placeholder="Password" name="password">
+                </div>
+
+                <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
+
+              </form>
+            </div>
+            <?php if ($msg) : ?>
+              <p><?= $msg ?></p>
+            <?php endif; ?>
           </div>
-
-
-
 
         </div>
         <!-- /.container-fluid -->

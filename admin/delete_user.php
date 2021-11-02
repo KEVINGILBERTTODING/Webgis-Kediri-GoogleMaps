@@ -14,10 +14,10 @@ $pdo = pdo_connect_mysql();
 $msg = '';
 
 // Check that the contact ID exists
-if (isset($_GET['id_user'])) {
+if (isset($_GET['id'])) {
   // Select the record that is going to be deleted
-  $stmt = $pdo->prepare('SELECT * FROM user WHERE id_user = ?');
-  $stmt->execute([$_GET['id_user']]);
+  $stmt = $pdo->prepare('SELECT * FROM user WHERE id = ?');
+  $stmt->execute([$_GET['id']]);
   $contact = $stmt->fetch(PDO::FETCH_ASSOC);
   if (!$contact) {
     exit('Contact doesn\'t exist with that ID!');
@@ -26,8 +26,8 @@ if (isset($_GET['id_user'])) {
   if (isset($_GET['confirm'])) {
     if ($_GET['confirm'] == 'yes') {
       // User clicked the "Yes" button, delete record
-      $stmt = $pdo->prepare('DELETE FROM user WHERE id_user = ?');
-      $stmt->execute([$_GET['id_user']]);
+      $stmt = $pdo->prepare('DELETE FROM user WHERE id = ?');
+      $stmt->execute([$_GET['id']]);
       header('Location: read_user.php');
     } else {
       // User clicked the "No" button, redirect them back to the read page
@@ -91,36 +91,44 @@ if (isset($_GET['id_user'])) {
       </li>
 
 
-
-
-
       <!-- Divider -->
       <hr class="sidebar-divider">
-
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="read_user.php">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Users</span></a>
+      </li>
+      <hr class="sidebar-divider">
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Utilities
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Data</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Interface:</h6>
-            <a class="collapse-item" href="read_user.php">Show User</a>
+
             <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
             <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="../map/map2.php">Show Map</a>
+
           </div>
         </div>
       </li>
 
+      <hr class="sidebar-divider">
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+        <a class="nav-link" href="../map/map2.php">
+          <i class="fas fa-fw fa-map-marker-alt"></i>
+          <span>Map</span></a>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -232,15 +240,15 @@ if (isset($_GET['id_user'])) {
                   <div class="text-center">
 
 
-                    <h2>Delete User ID #<?= $contact['id_user'] ?></h2>
+                    <h2>Delete User ID #<?= $contact['id'] ?></h2>
                     <?php if ($msg) : ?>
                       <p><?= $msg ?></p>
                     <?php else : ?>
                       <p>Are you sure you want to delete <b><?= $contact['username'] ?>?</b></p>
                       <div class="yesno">
-                        <a href="delete_user.php?id_user=<?= $contact['id_user'] ?>&confirm=yes" class="btn btn-success btn-circle">
+                        <a href="delete_user.php?id=<?= $contact['id'] ?>&confirm=yes" class="btn btn-success btn-circle">
                           <i class="fas fa-check"></i> </a>
-                        <a href="read_user.php?id_user=<?= $contact['id_user'] ?>&confirm=no" class="btn btn-danger btn-circle">
+                        <a href="read_user.php?id=<?= $contact['id'] ?>&confirm=no" class="btn btn-danger btn-circle">
                           <i class="fas fa-times"></i>
                         </a>
                       </div>

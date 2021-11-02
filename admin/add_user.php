@@ -84,36 +84,44 @@ if (!empty($_POST)) {
       </li>
 
 
-
-
-
       <!-- Divider -->
       <hr class="sidebar-divider">
-
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="read_user.php">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Users</span></a>
+      </li>
+      <hr class="sidebar-divider">
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Utilities
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Data</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Interface:</h6>
-            <a class="collapse-item" href="read_user.php">Show User</a>
+
             <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
             <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="../map/map2.php">Show Map</a>
+
           </div>
         </div>
       </li>
 
+      <hr class="sidebar-divider">
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+        <a class="nav-link" href="../map/map2.php">
+          <i class="fas fa-fw fa-map-marker-alt"></i>
+          <span>Map</span></a>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -216,107 +224,97 @@ if (!empty($_POST)) {
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800"><b>Add User</b></h1>
-          <div class="container">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-              <div class="card-body p-4">
-                <!-- Nested Row within Card Body -->
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Register</h1>
-                  </div>
-                  <form class="user" action="add_user.php" method="POST">
-                    <div class="form-group">
-                      <input type="number" class="form-control form-control-user" id="id" placeholder="ID" name="id" readonly>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username" required>
-                    </div>
-
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="nama" placeholder="Full Name" name="nama" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="level" class="form-control form-control-user" id="level" placeholder="level" name="level" required>
-                    </div>
-                    <div class="form-group row">
-                      <div class="col-sm-6">
-                        <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Password" required>
-                      </div>
-                      <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="password" required </div>
-                      </div>
-                    </div>
-                    <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
-
-
-                  </form>
-
-
+          <!-- Basic Card Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">New User</h6>
+            </div>
+            <div class="card-body">
+              <form class="user" action="add_user.php" method="POST">
+                <div class="form-group">
+                  <input type="number" class="form-control form-control-user" id="id" placeholder="ID" name="id" readonly>
                 </div>
-              </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="nama" placeholder="Full Name" name="nama" required>
+                </div>
+                <div class="form-group">
+                  <input type="level" class="form-control form-control-user" id="level" placeholder="level" name="level" required>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6">
+                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Password" required>
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="password" required </div>
+                  </div>
+                </div>
+                <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
+
+              </form>
+
+            </div>
+
+
+          </div>
+          <!-- /.container-fluid -->
+
+        </div>
+
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; Kevin Gilbert Toding 2021</span>
             </div>
           </div>
-
-
-
-
-        </div>
-        <!-- /.container-fluid -->
+        </footer>
+        <!-- End of Footer -->
 
       </div>
+      <!-- End of Content Wrapper -->
 
-      <!-- End of Main Content -->
+    </div>
+    <!-- End of Page Wrapper -->
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Kevin Gilbert Toding 2021</span>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="logout.php">Logout</a>
           </div>
         </div>
-      </footer>
-      <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
-
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="logout.php">Logout</a>
-        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
 </body>
 

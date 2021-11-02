@@ -203,7 +203,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM user')->fetchColumn();
 
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <a href="create_data.php" class="btn btn-primary btn-icon-split">
+              <a href="add_user.php" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                   <i class="fas fa-plus"></i>
                 </span>
@@ -233,7 +233,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM user')->fetchColumn();
                         <td><?= $contact['level'] ?></td>
                         <td><?= $contact['password'] ?></td>
                         <td class="actions">
-                          <a href="update_user.php?id=<?= $contact['id'] ?>" class="btn btn-warning btn-circle">
+                          <a href="update_user.php?id=<?= $contact['id'] ?>" class="btn btn-primary btn-circle">
                             <i class="fas fa-edit"></i>
                           </a>
                           <a href="delete_user.php?id=<?= $contact['id'] ?>" class="btn btn-danger btn-circle">
