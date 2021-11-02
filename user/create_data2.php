@@ -66,7 +66,7 @@ if (!empty($_POST)) {
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="add_user.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard_user.php">
         <div class="sidebar-brand-icon">
           <i class="fas fa-users-cog"></i>
         </div>
@@ -82,6 +82,7 @@ if (!empty($_POST)) {
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+
 
       <!-- Divider -->
 
@@ -210,52 +211,38 @@ if (!empty($_POST)) {
 
         </nav>
         <!-- End of Topbar -->
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800"><b>Create New Data</b></h1>
-          <div class="container">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-              <div class="card-body p-4">
-                <!-- Nested Row within Card Body -->
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Add New Data</h1>
-                  </div>
-                  <form class="user" action="create_data2.php" method="POST">
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="id" placeholder="ID" name="id" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="nama" placeholder="Nama Peternakan" name="nama" required>
-                    </div>
-
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="alanmat" placeholder="Alamat Peternakan" name="alamat" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="lat" placeholder="Latitude" name="lat" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="lng" placeholder="Longitude" name="lng" required>
-                    </div>
-
-                    <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
-
-
-                  </form>
-
-
+          <h1 class="h3 mb-4 text-gray-800"><b>Update Data Populasi Ternak Sapi</b></h1>
+          <!-- Basic Card Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Update Data</h6>
+            </div>
+            <div class="card-body">
+              <form class="user" action="create_data2.php" method="POST">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" id="id" placeholder="ID" name="id" required>
                 </div>
-              </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" id="nama" placeholder="Nama Peternakan" name="nama" required>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" id="alanmat" placeholder="Alamat Peternakan" name="alamat" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" id="lat" placeholder="Latitude" name="lat" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" id="lng" placeholder="Longitude" name="lng" required>
+                </div>
+                <input type="submit" value="create" class="btn btn-primary btn btn-block">
+              </form>
             </div>
           </div>
-
-
-
 
         </div>
         <!-- /.container-fluid -->

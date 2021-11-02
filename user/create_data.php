@@ -69,7 +69,7 @@ if (!empty($_POST)) {
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="add_user.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard_user.php">
         <div class="sidebar-brand-icon">
           <i class="fas fa-user-cog"></i>
         </div>
@@ -85,7 +85,6 @@ if (!empty($_POST)) {
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
-
 
       <!-- Divider -->
 
@@ -115,7 +114,7 @@ if (!empty($_POST)) {
       <hr class="sidebar-divider">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
-        <a class="nav-link" href="../map/map2_user.php">
+        <a class="nav-link" href="../map/map_user.php">
           <i class="fas fa-fw fa-map-marker-alt"></i>
           <span>Map</span></a>
       </li>
@@ -219,49 +218,38 @@ if (!empty($_POST)) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800"><b>Create New Data</b></h1>
-          <div class="container">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-              <div class="card-body p-4">
-                <!-- Nested Row within Card Body -->
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Add New Data</h1>
-                  </div>
-                  <form class="user" action="create_data.php" method="POST">
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="id" placeholder="ID" name="id" readonly required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="provinsi" placeholder="Provinsi" name="provinsi" required>
-                    </div>
-
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kabupaten" placeholder="Kabupaten" name="kabupaten" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kodedagri" placeholder="Kodedagri" name="kodedagri" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kecamatan" placeholder="Kecamatan" name="kecamatan" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="number" class="form-control form-control-user" id="jml" placeholder="Jumlah" name="jml" required>
-                    </div>
-                    <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
-
-
-                  </form>
-
-
+          <h1 class="h3 mb-4 text-gray-800"><b>Create NewData</b></h1>
+          <!-- Basic Card Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">New Data</h6>
+            </div>
+            <div class="card-body">
+              <form class="user" action="create_data.php" method="POST">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" id="id" placeholder="ID" name="id" required>
                 </div>
-              </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" id="provinsi" placeholder="Provinsi" name="provinsi" required>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" id="kabupaten" placeholder="Kabupaten" name="kabupaten" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" id="kodedagri" placeholder="Kodedagri" name="kodedagri" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" id="kecamatan" placeholder="Kecamatan" name="kecamatan" required>
+                </div>
+                <div class="form-group">
+                  <input type="number" class="form-control form-control" id="jml" placeholder="Jumlah" name="jml" required>
+                </div>
+                <input type="submit" value="Create" class="btn btn-primary btn btn-block">
+
+              </form>
             </div>
           </div>
-
-
-
 
         </div>
         <!-- /.container-fluid -->

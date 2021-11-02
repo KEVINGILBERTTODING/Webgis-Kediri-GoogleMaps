@@ -9,7 +9,7 @@ $nama = $_SESSION["nama"];
 ?>
 
 <?php
-include 'functions.php';
+include '../functions.php';
 $pdo = pdo_connect_mysql();
 $msg = '';
 // Check if the contact id exists, for example update.php?id=1 will get the contact with the id of 1
@@ -58,11 +58,11 @@ if (isset($_GET['id'])) {
   <title>Add User</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link rel="shortcut icon" href="../assets/logo2.png">
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../admin/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -75,7 +75,7 @@ if (isset($_GET['id'])) {
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="add_user.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard_user.php">
         <div class="sidebar-brand-icon">
           <i class="fas fa-users-cog"></i>
         </div>
@@ -87,43 +87,43 @@ if (isset($_GET['id'])) {
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="dashboard.php">
+        <a class="nav-link" href="dashboard_user.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
 
-
-
-
-
       <!-- Divider -->
-      <hr class="sidebar-divider">
 
+      <hr class="sidebar-divider">
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        Utilities
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item active active">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Data</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Interface:</h6>
-            <a class="collapse-item" href="read_user.php">Show User</a>
+
             <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
             <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="../map/map2.php">Show Map</a>
+
           </div>
         </div>
       </li>
 
-
+      <hr class="sidebar-divider">
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+        <a class="nav-link" href="../map/map_user.php">
+          <i class="fas fa-fw fa-map-marker-alt"></i>
+          <span>Map</span></a>
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -219,57 +219,43 @@ if (isset($_GET['id'])) {
 
         </nav>
         <!-- End of Topbar -->
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800"><b>Update Data</b></h1>
-          <div class="container">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-              <div class="card-body p-4">
-                <!-- Nested Row within Card Body -->
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Update Data ID #<?= $contact['id'] ?></h1>
-
-                  </div>
-                  <form class="user" action="update_data2.php?id=<?= $contact['id'] ?>" method="post">
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" value="<?= $contact['id'] ?>" id="id" placeholder="ID" name="id">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" value="<?= $contact['nama'] ?>" id="nama" placeholder="Nama Peternakan" name="nama">
-                    </div>
-
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" value="<?= $contact['alamat'] ?>" id="alamat" placeholder="Alamat Peternakan" name="alamat">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" value="<?= $contact['lat'] ?>" id="lat" placeholder="Latitude" name="lat">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" value="<?= $contact['lng'] ?>" id="lng" placeholder="Longitude" name="lng">
-                    </div>
-
-                    <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
-
-
-
-                  </form>
-
-
-                </div>
-                <?php if ($msg) : ?>
-                  <p><?= $msg ?></p>
-                <?php endif; ?>
-              </div>
+          <h1 class="h3 mb-4 text-gray-800"><b>Update Data Peternakan Sapi</b></h1>
+          <!-- Basic Card Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Update Data</h6>
             </div>
+            <div class="card-body">
+              <form class="user" action="update_data2.php?id=<?= $contact['id'] ?>" method="post">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" value="<?= $contact['id'] ?>" id="id" placeholder="ID" name="id">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" value="<?= $contact['nama'] ?>" id="nama" placeholder="Nama Peternakan" name="nama">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" value="<?= $contact['alamat'] ?>" id="alamat" placeholder="Alamat Peternakan" name="alamat">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" value="<?= $contact['lat'] ?>" id="lat" placeholder="Latitude" name="lat">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" value="<?= $contact['lng'] ?>" id="lng" placeholder="Longitude" name="lng">
+                </div>
+                <input type="submit" value="Update" class="btn btn-primary btn btn-block">
+
+              </form>
+
+            </div>
+            <?php if ($msg) : ?>
+              <p><?= $msg ?></p>
+            <?php endif; ?>
           </div>
-
-
-
 
         </div>
         <!-- /.container-fluid -->
@@ -319,14 +305,14 @@ if (isset($_GET['id'])) {
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../admin/vendor/jquery/jquery.min.js"></script>
+  <script src="../adminvendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../adminvendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="../adminjs/sb-admin-2.min.js"></script>
 
 </body>
 
