@@ -71,7 +71,7 @@ if (!empty($_POST)) {
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard_user.php">
         <div class="sidebar-brand-icon">
-          <i class="fas fa-user-cog"></i>
+          <i class="fas fa-users-cog"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Kab. Kediri</div>
       </a>
