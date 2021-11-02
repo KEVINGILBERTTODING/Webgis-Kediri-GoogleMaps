@@ -219,45 +219,41 @@ if (!empty($_POST)) {
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800"><b>Create New Data</b></h1>
-          <div class="container">
 
-            <div class="card o-hidden border-0 shadow-lg my-5">
-              <div class="card-body p-4">
-                <!-- Nested Row within Card Body -->
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Add New Data</h1>
-                  </div>
-                  <form class="user" action="create_data.php" method="POST">
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="id" placeholder="ID" name="id" readonly required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="provinsi" placeholder="Provinsi" name="provinsi" required>
-                    </div>
-
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kabupaten" placeholder="Kabupaten" name="kabupaten" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kodedagri" placeholder="Kodedagri" name="kodedagri" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="kecamatan" placeholder="Kecamatan" name="kecamatan" required>
-                    </div>
-                    <div class="form-group">
-                      <input type="number" class="form-control form-control-user" id="jml" placeholder="Jumlah" name="jml" required>
-                    </div>
-                    <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
-
-
-                  </form>
-
-
+          <!-- Basic Card Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
+            </div>
+            <div class="card-body">
+              <form class="user" action="create_data.php" method="POST">
+                <div class="form-group">
+                  <input type="text" class="form-control " id="id" placeholder="ID" name="id" required>
                 </div>
-              </div>
+                <div class="form-group">
+                  <input type="text" class="form-control " id="provinsi" placeholder="Provinsi" name="provinsi" required>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" id="kabupaten" placeholder="Kabupaten" name="kabupaten" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="kodedagri" placeholder="Kodedagri" name="kodedagri" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="kecamatan" placeholder="Kecamatan" name="kecamatan" required>
+                </div>
+                <div class="form-group">
+                  <input type="number" class="form-control " id="jml" placeholder="Jumlah" name="jml" required>
+                </div>
+                <input type="submit" value="create" class="btn btn-primary  btn-block">
+
+
+              </form>
+
             </div>
           </div>
+
 
 
 
