@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 01, 2021 at 05:32 PM
+-- Generation Time: Nov 09, 2021 at 06:35 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -58,8 +58,7 @@ INSERT INTO `peternakan` (`id`, `nama`, `alamat`, `lat`, `lng`) VALUES
 (16, 'Sido Dadi Farm', 'Jl. Raya Kediri - Blitar, Susuhbango Selatan, Selodono, Kec. Ringinrejo', -7.95961, '112.02954'),
 (17, 'Kandang Sapi Pak Siswanto', 'Dampit, Asmorobangun, Kec. Puncu', -7.8333, '112.2458'),
 (18, 'Sumber Agung Farm', 'Sumberagung, Krecek, Kec. Badas', -7.7231, '112.2190'),
-(19, 'Kandang Sapi Desa Kedungmalang', 'Kedungmalang, Kec. Papar', -7.70622, '112.11854'),
-(20, 'Peternakan sapi ma lia', 'Limbong, Kec. Tarokan', -7.7124, '111.9529');
+(19, 'Kandang Sapi Desa Kedungmalang', 'Kedungmalang, Kec. Papar', -7.70622, '112.11854');
 
 -- --------------------------------------------------------
 
@@ -90,7 +89,7 @@ INSERT INTO `ternak` (`id`, `provinsi`, `kabupaten`, `kodedagri`, `kecamatan`, `
 (6, 'Jawa Timur', 'Kediri', '64157', 'BANYAKAN', 4997),
 (4, 'Jawa Timur', 'Kediri', '64162', 'MOJO', 11766),
 (3, 'Jawa Timur', 'Kediri', '64172', 'KRAS', 8919),
-(22, 'Jawa Timur', 'Kediri', '64173', 'KANDAT', 9391),
+(22, 'Jawa Timur', 'Kediri', '64173', 'Kandat', 9391),
 (1, 'Jawa Timur', 'Kediri', '64174', 'WATES', 14458),
 (2, 'Jawa Timur', 'Kediri', '64175', 'PLOSOKLATEN', 12998),
 (21, 'Jawa Timur', 'Kediri', '64176', 'RINGINREJO', 11024),
@@ -125,7 +124,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `nama`, `level`, `password`) VALUES
 (2, 'indah', 'Indah Cahaya', 'user', 'indah'),
 (8, 'kevin', 'Kevin Gilbert Toding', 'admin', 'kevin12345'),
-(28, 'chika', 'chelsi chika zeruya', 'user', 'chika');
+(28, 'chika', 'chelsi chika zeruya', 'user', 'chika'),
+(30, 'lia', 'Natalia Permata Sari', 'admin', 'lia12345');
 
 --
 -- Indexes for dumped tables
@@ -157,7 +157,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

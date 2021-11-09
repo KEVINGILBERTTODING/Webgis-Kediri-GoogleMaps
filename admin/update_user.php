@@ -77,7 +77,7 @@ if (isset($_GET['id'])) {
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="add_user.php">
         <div class="sidebar-brand-icon">
-          <i class="fas fa-users-cog"></i>
+          <i class="fas fa-user-cog"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Kab. Kediri</div>
       </a>
@@ -256,7 +256,7 @@ if (isset($_GET['id'])) {
                   <input type="password" class="form-control form-control-user" value="<?= $contact['password'] ?>" id="exampleRepeatPassword" placeholder="Password" name="password">
                 </div>
 
-                <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
+                <input type="submit" value="Update" class="btn btn-primary btn-user btn-block">
 
               </form>
             </div>

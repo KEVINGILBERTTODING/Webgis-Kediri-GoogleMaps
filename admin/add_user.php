@@ -232,7 +232,7 @@ if (!empty($_POST)) {
             <div class="card-body">
               <form class="user" action="add_user.php" method="POST">
                 <div class="form-group">
-                  <input type="number" class="form-control form-control-user" id="id" placeholder="ID" name="id" readonly>
+                  <input type="number" class="form-control form-control-user" id="id" placeholder="ID" name="id" required>
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="username" placeholder="Username" name="username" required>
@@ -244,13 +244,8 @@ if (!empty($_POST)) {
                 <div class="form-group">
                   <input type="level" class="form-control form-control-user" id="level" placeholder="level" name="level" required>
                 </div>
-                <div class="form-group row">
-                  <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Password" required>
-                  </div>
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="password" placeholder="Repeat Password" name="password" required </div>
-                  </div>
+                <div class="form-group">
+                  <input type="password" class="form-control form-control-user" id="password" placeholder="Password" name="password" required </div>
                 </div>
                 <input type="submit" value="create" class="btn btn-primary btn-user btn-block">
 
