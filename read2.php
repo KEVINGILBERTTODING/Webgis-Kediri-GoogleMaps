@@ -22,7 +22,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM peternakan')->fetchColumn();
 ?>
 
 
-<?= template_header('Read') ?>
+<?= template_header('Data dan Informasi') ?>
 <br><br><br><br>
 <div class="container">
     <br>

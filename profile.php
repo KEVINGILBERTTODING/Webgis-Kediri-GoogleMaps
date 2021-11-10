@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/responsive.css">
 
-    <title>Profile</title>
+    <title>Profile Kab. Kediri</title>
 </head>
 
 <body>
