@@ -82,7 +82,6 @@ if (isset($_GET['id'])) {
         <div class="sidebar-brand-text mx-3">Kab. Kediri</div>
       </a>
 
-      <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
@@ -91,6 +90,7 @@ if (isset($_GET['id'])) {
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+
 
       <!-- Divider -->
 
@@ -101,7 +101,7 @@ if (isset($_GET['id'])) {
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active active">
+      <li class="nav-item active">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Data</span>
@@ -306,13 +306,14 @@ if (isset($_GET['id'])) {
 
   <!-- Bootstrap core JavaScript-->
   <script src="../admin/vendor/jquery/jquery.min.js"></script>
-  <script src="../adminvendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="../adminvendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="../adminjs/sb-admin-2.min.js"></script>
+  <script src="../admin/js/sb-admin-2.min.js"></script>
+
 
 </body>
 

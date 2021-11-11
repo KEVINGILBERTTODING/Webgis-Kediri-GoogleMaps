@@ -198,7 +198,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM peternakan')->fetchColumn();
 
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <a href="create_data.php" class="btn btn-primary btn-icon-split">
+              <a href="create_data2.php" class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                   <i class="fas fa-plus"></i>
                 </span>
