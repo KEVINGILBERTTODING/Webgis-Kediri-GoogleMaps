@@ -57,7 +57,7 @@ if (isset($_GET['id'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Add User</title>
+  <title>Update Data</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -246,17 +246,17 @@ if (isset($_GET['id'])) {
                   <input type="text" class="form-control form-control" id="id" value="<?= $contact['id'] ?>" placeholder="ID" name="id" readonly>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control" value="<?= $contact['provinsi'] ?>" id="provinsi" placeholder="Provinsi" name="provinsi">
+                  <input type="text" class="form-control form-control" value="<?= $contact['provinsi'] ?>" id="provinsi" placeholder="Provinsi" name="provinsi" required>
                 </div>
 
                 <div class="form-group">
-                  <input type="text" class="form-control form-control" id="kabupaten" value="<?= $contact['kabupaten'] ?>" placeholder="Kabupaten" name="kabupaten">
+                  <input type="text" class="form-control form-control" id="kabupaten" value="<?= $contact['kabupaten'] ?>" placeholder="Kabupaten" name="kabupaten" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control" id="kodedagri" value="<?= $contact['kodedagri'] ?>" placeholder="Kodedagri" name="kodedagri">
+                  <input type="text" class="form-control form-control" id="kodedagri" value="<?= $contact['kodedagri'] ?>" placeholder="Kodedagri" name="kodedagri" readonly>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control" id="kecamatan" value="<?= $contact['kecamatan'] ?>" placeholder="Kecamatan" name="kecamatan">
+                  <input type="text" class="form-control form-control" id="kecamatan" value="<?= $contact['kecamatan'] ?>" placeholder="Kecamatan" name="kecamatan" required>
                 </div>
                 <div class="form-group">
                   <input type="number" class="form-control form-control" value="<?= $contact['jml'] ?>" id="jml" placeholder="Jumlah" name="jml">

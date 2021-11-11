@@ -55,7 +55,7 @@ if (isset($_GET['id'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Add User</title>
+  <title>Update Data</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -244,17 +244,17 @@ if (isset($_GET['id'])) {
                   <input type="text" class="form-control form-control" value="<?= $contact['id'] ?>" id="id" placeholder="ID" name="id">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control" value="<?= $contact['nama'] ?>" id="nama" placeholder="Nama Peternakan" name="nama">
+                  <input type="text" class="form-control form-control" value="<?= $contact['nama'] ?>" id="nama" placeholder="Nama Peternakan" name="nama" required>
                 </div>
 
                 <div class="form-group">
-                  <input type="text" class="form-control form-control" value="<?= $contact['alamat'] ?>" id="alamat" placeholder="Alamat Peternakan" name="alamat">
+                  <input type="text" class="form-control form-control" value="<?= $contact['alamat'] ?>" id="alamat" placeholder="Alamat Peternakan" name="alamat" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control" value="<?= $contact['lat'] ?>" id="lat" placeholder="Latitude" name="lat">
+                  <input type="text" class="form-control form-control" value="<?= $contact['lat'] ?>" id="lat" placeholder="Latitude" name="lat" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control" value="<?= $contact['lng'] ?>" id="lng" placeholder="Longitude" name="lng">
+                  <input type="text" class="form-control form-control" value="<?= $contact['lng'] ?>" id="lng" placeholder="Longitude" name="lng" required>
                 </div>
 
                 <input type="submit" value="Update" class="btn btn-primary btn btn-block">
