@@ -257,7 +257,7 @@ if (isset($_GET['id'])) {
                   <input type="text" class="form-control form-control" value="<?= $contact['lng'] ?>" id="lng" placeholder="Longitude" name="lng" required>
                 </div>
 
-                <input type="submit" value="Update" class="btn btn-primary btn btn-block">
+                <input type="submit" value="Update" class="btn btn-primary">
 
               </form>
 

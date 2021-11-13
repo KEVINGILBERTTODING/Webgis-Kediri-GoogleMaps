@@ -250,7 +250,7 @@ if (!empty($_POST)) {
                 <div class="form-group">
                   <input type="text" class="form-control form-control" id="lng" placeholder="Longitude" name="lng" required>
                 </div>
-                <input type="submit" value="create" class="btn btn-primary btn btn-block">
+                <input type="submit" value="create" class="btn btn-primary">
               </form>
             </div>
           </div>
