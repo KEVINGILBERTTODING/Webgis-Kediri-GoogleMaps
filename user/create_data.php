@@ -245,7 +245,7 @@ if (!empty($_POST)) {
                 <div class="form-group">
                   <input type="number" class="form-control form-control" id="jml" placeholder="Jumlah" name="jml" required>
                 </div>
-                <input type="submit" value="Create" class="btn btn-primary btn btn-block">
+                <input type="submit" value="Create" class="btn btn-primary btn">
 
               </form>
             </div>

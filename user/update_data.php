@@ -254,7 +254,7 @@ if (isset($_GET['id'])) {
                 <div class="form-group">
                   <input type="number" class="form-control form-control" value="<?= $contact['jml'] ?>" id="jml" placeholder="Jumlah" name="jml" required>
                 </div>
-                <input type="submit" value="Update" class="btn btn-primary btn btn-block">
+                <input type="submit" value="Update" class="btn btn-primary">
 
               </form>
 
