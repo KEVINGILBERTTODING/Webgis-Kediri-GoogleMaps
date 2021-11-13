@@ -83,6 +83,14 @@ if (!empty($_POST)) {
           <span>Dashboard</span></a>
       </li>
 
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item ">
+        <a class="nav-link" href="read_user.php">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Users</span></a>
+      </li>
 
       <!-- Divider -->
 
