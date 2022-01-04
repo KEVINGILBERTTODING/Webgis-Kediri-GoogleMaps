@@ -8,32 +8,6 @@ if ($_SESSION['level'] == "") {
 $nama = $_SESSION["nama"];
 ?>
 
-<?php
-include '../functions.php';
-$pdo = pdo_connect_mysql();
-$msg = '';
-// Check if POST data is not empty
-if (!empty($_POST)) {
-  // Post data not empty insert a new record
-  // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
-  $id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
-  // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
-  $nama = isset($_POST['nama']) ? $_POST['nama'] : '';
-  $alamat = isset($_POST['alamat']) ? $_POST['alamat'] : '';
-  $lat = isset($_POST['lat']) ? $_POST['lat'] : '';
-  $lng = isset($_POST['lng']) ? $_POST['lng'] : '';
-
-
-  // Insert new record into the contacts table
-  $stmt = $pdo->prepare('INSERT INTO peternakan VALUES (?, ?, ?, ?,?)');
-  $stmt->execute([$id, $nama, $alamat, $lat, $lng]);
-  // Output message
-  $msg = 'Created Successfully!';
-  header('Location: read2.php');
-}
-?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +20,62 @@ if (!empty($_POST)) {
   <meta name="description" content="">
   <meta name="author" content="">
 
+  <script src="jquery.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCns0o8yq9Q6Z3sskLNzV6hfaPilFI5twU&callback=initMap">
+
+  </script>
+
+  <script>
+    var map;
+    var myCenter = new google.maps.LatLng(-7.7768, 112.1313);
+    var marker;
+    var awal = 0;
+
+    var mapProp = {
+      center: myCenter,
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    function initialize() {
+
+      map = new google.maps.Map(document.getElementById("petaku"), mapProp);
+
+      google.maps.event.addListener(map, 'click', function(event) {
+
+        if (awal == 0) {
+          placeMarker(event.latLng);
+        } else {
+          changeMarker(event.latLng);
+        }
+        awal = 1;
+
+        setLatLng(event.latLng);
+      });
+
+    }
+
+    function setLatLng(lokasi) {
+
+
+
+      $("#lat").val(lokasi.lat());
+      $("#lng").val(lokasi.lng());
+
+    }
+
+    function placeMarker(location) {
+      marker = new google.maps.Marker({
+        position: location,
+        map: map,
+      });
+    }
+
+    function changeMarker(location) {
+      marker.setPosition(location);
+    }
+  </script>
+
   <title>Create New Data</title>
 
   <!-- Custom fonts for this template-->
@@ -57,7 +87,7 @@ if (!empty($_POST)) {
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="initialize()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -240,7 +270,10 @@ if (!empty($_POST)) {
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">New Data</h6>
             </div>
+
+
             <div class="card-body">
+              <div id="petaku" style="width:460px;height:300px" class="mb-3"></div>
               <form class="user" action="create_data2.php" method="POST">
                 <div class="form-group">
                   <input type="text" class="form-control form-control" id="id" placeholder="ID" name="id" required>
@@ -250,7 +283,16 @@ if (!empty($_POST)) {
                 </div>
 
                 <div class="form-group">
-                  <input type="text" class="form-control form-control" id="alanmat" placeholder="Alamat Peternakan" name="alamat" required>
+                  <label class="control-label col-sm-2 mt-2">Kategori peternakan:<span style='color:red'>*</span></label>
+                  <div class="col-sm-5 mt-2">
+                    <select name="jenis" id="jenis">
+                      <option value="Sapi">Sapi</option>
+                      <option value="Unggas">Unggas</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" id="alamat" placeholder="Alamat Peternakan" name="alamat" required>
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control form-control" id="lat" placeholder="Latitude" name="lat" required>

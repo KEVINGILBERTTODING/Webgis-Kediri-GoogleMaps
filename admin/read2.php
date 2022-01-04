@@ -9,28 +9,31 @@ $nama = $_SESSION["nama"];
 ?>
 
 <?php
-include 'functions.php';
-// Connect to MySQL database
-$pdo = pdo_connect_mysql();
-// Get the page via GET request (URL param: page), if non exists default the page to 1
-$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
-// Number of records to show on each page
-$records_per_page = 5;
+include('header3.php');
+$users = $obj->getPoint();
+
+if (isset($_POST['update'])) {
+
+  $user = $obj->getPointById();
+  $_SESSION['user'] = pg_fetch_object($user);
+  header('location:edit.php');
+}
 
 
-// Prepare the SQL statement and get records from our contacts table, LIMIT will determine the page
-$stmt = $pdo->prepare('SELECT * FROM peternakan ORDER BY id LIMIT :current_page, :record_per_page');
-$stmt->bindValue(':current_page', ($page - 1) * $records_per_page, PDO::PARAM_INT);
-$stmt->bindValue(':record_per_page', $records_per_page, PDO::PARAM_INT);
-$stmt->execute();
-// Fetch the records so we can display them in our template.
-$contacts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+if (isset($_POST['delete'])) {
 
-// Get the total number of contacts, this is so we can determine whether there should be a next and previous button
-$num_contacts = $pdo->query('SELECT COUNT(*) FROM peternakan')->fetchColumn();
+  $ret_val = $obj->deletepoint();
+  if ($ret_val == 1) {
+
+    echo "<script language='javascript'>";
+    echo "alert('Record Deleted Successfully'){
+          window.location.reload();
+      }";
+    echo "</script>";
+  }
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -218,6 +221,7 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM peternakan')->fetchColumn();
                     <tr>
                       <th>ID</th>
                       <th>Nama Peternakan</th>
+                      <th>Jenis Peternakan</th>
                       <th>Alamat Peternakan</th>
                       <th>Latitude</th>
                       <th>Longitude</th>
@@ -226,35 +230,26 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM peternakan')->fetchColumn();
                   </thead>
 
                   <tbody>
-                    <?php foreach ($contacts as $contact) : ?>
+                    <?php while ($user = pg_fetch_object($users)) : ?>
                       <tr>
-                        <td><?= $contact['id'] ?></td>
-                        <td><?= $contact['nama'] ?></td>
-                        <td><?= $contact['alamat'] ?></td>
-                        <td><?= $contact['lat'] ?></td>
-                        <td><?= $contact['lng'] ?></td>
-                        <td class="actions">
-                          <a href=update_data2.php?id=<?= $contact['id'] ?>" class="btn btn-primary btn-circle">
-                            <i class="fas fa-edit"></i>
-                          </a>
-                          <a href="delete_data2.php?id=<?= $contact['id'] ?>" class="btn btn-danger btn-circle">
-                            <i class="fas fa-trash"></i>
-                          </a>
+                        <td><?= $user->id ?></td>
+                        <td><?= $user->nama ?></td>
+                        <td><?= $user->jenis ?></td>
+                        <td><?= $user->alamat ?></td>
+                        <td><?= $user->lat ?></td>
+                        <td><?= $user->lng ?></td>
+                        <td class="action">
+                          <form method="post">
+                            <input type="submit" class="btn btn-success" name="update" value="Update">
+                            <input type="submit" onClick="return confirm('Please confirm deletion');" class="btn btn-danger" name="delete" value="Delete">
+                            <input type="hidden" value="<?= $user->id ?>" name="id">
+                          </form>
                         </td>
                       </tr>
-                    <?php endforeach; ?>
-
-
+                    <?php endwhile; ?>
                   </tbody>
                 </table>
-                <div class="pagination">
-                  <?php if ($page > 1) : ?>
-                    <a class="btn btn-primary btn-circle" href="read2.php?page=<?= $page - 1 ?>"><i class="fas fa-angle-double-left fa-sm"></i></a>
-                  <?php endif; ?>
-                  <?php if ($page * $records_per_page < $num_contacts) : ?>
-                    <a class="btn btn-primary btn-circle " href="read2.php?page=<?= $page + 1 ?>"><i class="fas fa-angle-double-right fa-sm"></i></a>
-                  <?php endif; ?>
-                </div>
+
               </div>
             </div>
           </div>
