@@ -14,10 +14,10 @@ include('header4.php');
                 </div>
                 <div class="container">
 
-                    <div class="container">
-                        <div class="map mt-4">
-                            <object data="http://localhost/geoserver/kediri/wms?service=WMS&version=1.1.0&request=GetMap&layers=kediri%3Apeternakan%20kediri&bbox=111.79463195800781%2C-7.987174034118652%2C112.41781616210938%2C-7.589443206787109&width=768&height=490&srs=EPSG%3A404000&styles=&format=application/openlayers" width="1920px" height="800px"></object>
-                        </div>
+
+                    <div class="map mt-4">
+                        <object data="http://localhost/geoserver/kediri/wms?service=WMS&version=1.1.0&request=GetMap&layers=kediri%3Apeternakan%20kediri2&bbox=111.79463195800781%2C-7.987174034118652%2C112.41781616210938%2C-7.589443206787109&width=1200&height=600&srs=EPSG%3A4326&styles=&format=application/openlayers" width="1920px" height="800px"></object>
                     </div>
                 </div>
-                <?php include('footer2.php'); ?>
+            </div>
+            <?php include('footer2.php'); ?>

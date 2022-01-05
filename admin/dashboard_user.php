@@ -85,7 +85,7 @@ $nama = $_SESSION["nama"];
             <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="../map/map2.php">Show Map</a>
+            <a class="collapse-item" href="../map/map.php">Show Map</a>
           </div>
         </div>
       </li>
@@ -296,7 +296,7 @@ $nama = $_SESSION["nama"];
 
   <!-- Pending Requests Card Example -->
   <div class="col-xl-3 col-md-6 mb-4">
-    <a href="../map/map2.php" style="text-decoration: none;">
+    <a href="../map/map.php" style="text-decoration: none;">
       <div class="card border-left-warning shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">

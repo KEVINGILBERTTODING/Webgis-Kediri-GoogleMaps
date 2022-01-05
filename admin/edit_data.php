@@ -1,4 +1,5 @@
 <?php
+include('header3.php');
 session_start();
 
 // cek apakah yang mengakses halaman ini sudah login
@@ -7,37 +8,16 @@ if ($_SESSION['level'] == "") {
 }
 $nama = $_SESSION["nama"];
 ?>
-
 <?php
-include 'functions.php';
-$pdo = pdo_connect_mysql();
-$msg = '';
-// Check if the contact id exists, for example update.php?id=1 will get the contact with the id of 1
-if (isset($_GET['id'])) {
-  if (!empty($_POST)) {
-    // This part is similar to the create.php, but instead we update a record and not insert
-    $id = isset($_POST['id']) ? $_POST['id'] : NULL;
-    $nama = isset($_POST['nama']) ? $_POST['nama'] : '';
-    $alamat = isset($_POST['alamat']) ? $_POST['alamat'] : '';
-    $lat = isset($_POST['lat']) ? $_POST['lat'] : '';
-    $lng = isset($_POST['lng']) ? $_POST['lng'] : '';
-
-
-
-    // Update the record
-    $stmt = $pdo->prepare('UPDATE peternakan SET id = ?, nama = ?, alamat = ?, lat = ?, lng = ? WHERE id = ?');
-    $stmt->execute([$id, $nama, $alamat, $lat, $lng,  $_GET['id']]);
-    header("Location: read2.php");
+$user = $_SESSION['user'];
+if (isset($_POST['update']) and !empty($_POST['update'])) {
+  $ret_val = $obj->updatePoint();
+  if ($ret_val == 1) {
+    echo '<script type="text/javascript">';
+    echo 'alert("Record Updated Successfully");';
+    echo 'window.location.href = "read2.php";';
+    echo '</script>';
   }
-  // Get the contact from the contacts table
-  $stmt = $pdo->prepare('SELECT * FROM peternakan WHERE id = ?');
-  $stmt->execute([$_GET['id']]);
-  $contact = $stmt->fetch(PDO::FETCH_ASSOC);
-  if (!$contact) {
-    exit('Contact doesn\'t exist with that id!');
-  }
-} else {
-  exit('No id specified!');
 }
 ?>
 
@@ -55,7 +35,63 @@ if (isset($_GET['id'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Update Data</title>
+  <script src="jquery.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCns0o8yq9Q6Z3sskLNzV6hfaPilFI5twU&callback=initMap">
+
+  </script>
+
+  <script>
+    var map;
+    var myCenter = new google.maps.LatLng(-7.7768, 112.1313);
+    var marker;
+    var awal = 0;
+
+    var mapProp = {
+      center: myCenter,
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    function initialize() {
+
+      map = new google.maps.Map(document.getElementById("petaku"), mapProp);
+
+      google.maps.event.addListener(map, 'click', function(event) {
+
+        if (awal == 0) {
+          placeMarker(event.latLng);
+        } else {
+          changeMarker(event.latLng);
+        }
+        awal = 1;
+
+        setLatLng(event.latLng);
+      });
+
+    }
+
+    function setLatLng(lokasi) {
+
+
+
+      $("#lat").val(lokasi.lat());
+      $("#lng").val(lokasi.lng());
+
+    }
+
+    function placeMarker(location) {
+      marker = new google.maps.Marker({
+        position: location,
+        map: map,
+      });
+    }
+
+    function changeMarker(location) {
+      marker.setPosition(location);
+    }
+  </script>
+
+  <title>Create New Data</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -66,7 +102,7 @@ if (isset($_GET['id'])) {
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="initialize()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -77,7 +113,7 @@ if (isset($_GET['id'])) {
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="add_user.php">
         <div class="sidebar-brand-icon">
-          <i class="fas fa-users-cog"></i>
+          <i class="fas fa-user-cog"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Kab. Kediri</div>
       </a>
@@ -92,7 +128,6 @@ if (isset($_GET['id'])) {
           <span>Dashboard</span></a>
       </li>
 
-
       <!-- Divider -->
       <hr class="sidebar-divider">
       <!-- Nav Item - Dashboard -->
@@ -101,6 +136,9 @@ if (isset($_GET['id'])) {
           <i class="fas fa-fw fa-user"></i>
           <span>Users</span></a>
       </li>
+
+      <!-- Divider -->
+
       <hr class="sidebar-divider">
       <!-- Heading -->
       <div class="sidebar-heading">
@@ -127,11 +165,10 @@ if (isset($_GET['id'])) {
       <hr class="sidebar-divider">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
-        <a class="nav-link" href="../map/map2.php">
+        <a class="nav-link" href="../map/map_user.php">
           <i class="fas fa-fw fa-map-marker-alt"></i>
           <span>Map</span></a>
       </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -139,6 +176,16 @@ if (isset($_GET['id'])) {
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
+
+    </ul>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
 
     </ul>
     <!-- End of Sidebar -->
@@ -232,39 +279,46 @@ if (isset($_GET['id'])) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800"><b>Update Data Peternakan</b></h1>
+          <h1 class="h3 mb-4 text-gray-800"><b>Create New Data</b></h1>
           <!-- Basic Card Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Update Data</h6>
+              <h6 class="m-0 font-weight-bold text-primary">New Data</h6>
             </div>
+
+
             <div class="card-body">
-              <form class="user" action="update_data2.php?id=<?= $contact['id'] ?>" method="post">
+              <div id="petaku" style="width:460px;height:300px" class="mb-3"></div>
+              <form class="user" method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control" value="<?= $contact['id'] ?>" id="id" placeholder="ID" name="id">
+                  <input type="text" class="form-control form-control" id="id" value="<?= $user->id ?>" placeholder="ID" name="id" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control" value="<?= $contact['nama'] ?>" id="nama" placeholder="Nama Peternakan" name="nama" required>
-                </div>
-
-                <div class="form-group">
-                  <input type="text" class="form-control form-control" value="<?= $contact['alamat'] ?>" id="alamat" placeholder="Alamat Peternakan" name="alamat" required>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control" value="<?= $contact['lat'] ?>" id="lat" placeholder="Latitude" name="lat" required>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control" value="<?= $contact['lng'] ?>" id="lng" placeholder="Longitude" name="lng" required>
+                  <input type="text" class="form-control form-control" id="nama" value="<?= $user->nama ?>" placeholder="Nama Peternakan" name="nama" required>
                 </div>
 
-                <input type="submit" value="Update" class="btn btn-primary">
-
+                <div class="form-group">
+                  <label class="control-label col-sm-2 mt-2">Kategori peternakan:<span style='color:red'>*</span></label>
+                  <div class="col-sm-5 mt-2">
+                    <select name="jenis" id="jenis">
+                      <option value="<?= $user->jenis ?>"><?= $user->jenis ?></option>
+                      <option value="Sapi">Sapi</option>
+                      <option value="Unggas">Unggas</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" value="<?= $user->alamat ?>" id="alamat" placeholder="Alamat Peternakan" name="alamat" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" value="<?= $user->lat ?>" id="lat" placeholder="Latitude" name="lat" required>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control" value="<?= $user->lng ?>" id="lng" placeholder="Longitude" name="lng" required>
+                </div>
+                <input type="submit" class="btn btn-success" name="update" value="Update">
               </form>
-
             </div>
-            <?php if ($msg) : ?>
-              <p><?= $msg ?></p>
-            <?php endif; ?>
           </div>
 
         </div>

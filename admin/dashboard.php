@@ -83,8 +83,8 @@ $nama = $_SESSION["nama"];
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Interface:</h6>
 
-            <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
-            <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
+
+            <a class="collapse-item" href="read2.php">Peternakan</a>
 
           </div>
         </div>
@@ -93,7 +93,7 @@ $nama = $_SESSION["nama"];
       <hr class="sidebar-divider">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
-        <a class="nav-link" href="../map/map2.php">
+        <a class="nav-link" href="../map/map.php">
           <i class="fas fa-fw fa-map-marker-alt"></i>
           <span>Map</span></a>
       </li>
@@ -302,7 +302,7 @@ $nama = $_SESSION["nama"];
 
   <!-- Pending Requests Card Example -->
   <div class="col-xl-3 col-md-6 mb-4">
-    <a href="../map/map2.php" style="text-decoration: none;">
+    <a href="../map/map.php" style="text-decoration: none;">
       <div class="card border-left-warning shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">

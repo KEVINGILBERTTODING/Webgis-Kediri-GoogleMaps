@@ -16,7 +16,7 @@ if (isset($_POST['update'])) {
 
   $user = $obj->getPointById();
   $_SESSION['user'] = pg_fetch_object($user);
-  header('location:edit.php');
+  header('location:edit_data.php');
 }
 
 
@@ -107,8 +107,8 @@ if (isset($_POST['delete'])) {
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Interface:</h6>
 
-            <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
-            <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
+
+            <a class="collapse-item" href="read2.php">Peternakan</a>
 
           </div>
         </div>
@@ -117,7 +117,7 @@ if (isset($_POST['delete'])) {
       <hr class="sidebar-divider">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
-        <a class="nav-link" href="../map/map2.php">
+        <a class="nav-link" href="../map/map.php">
           <i class="fas fa-fw fa-map-marker-alt"></i>
           <span>Map</span></a>
       </li>
@@ -203,7 +203,7 @@ if (isset($_POST['delete'])) {
 
           <!-- Page Heading -->
           <h1 class="h3 mb-4 text-gray-800"><b>Show Data</b></h1>
-          <h2 class="h4 mb-4 text-gray-800">Data Peternakan Sapi</h2>
+          <h2 class="h4 mb-4 text-gray-800">Data Peternakan Sapi dan Unggas</h2>
 
           <div class="card shadow mb-4">
             <div class="card-header py-3">

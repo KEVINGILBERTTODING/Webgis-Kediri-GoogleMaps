@@ -1,4 +1,5 @@
 <?php
+include('header3.php');
 session_start();
 
 // cek apakah yang mengakses halaman ini sudah login
@@ -7,6 +8,20 @@ if ($_SESSION['level'] == "") {
 }
 $nama = $_SESSION["nama"];
 ?>
+<?php
+
+if (isset($_POST['submit']) and !empty($_POST['submit'])) {
+  $ret_val = $obj->createPoint();
+  if ($ret_val == 1) {
+    echo '<script type="text/javascript">';
+    echo 'alert("Record Saved Successfully");';
+    echo 'window.location.href = "create_data2.php";';
+    echo '</script>';
+  }
+}
+?>
+
+
 
 
 <!DOCTYPE html>
@@ -150,7 +165,7 @@ $nama = $_SESSION["nama"];
       <hr class="sidebar-divider">
       <!-- Nav Item - Dashboard -->
       <li class="nav-item ">
-        <a class="nav-link" href="../map/map_user.php">
+        <a class="nav-link" href="../map/map.php">
           <i class="fas fa-fw fa-map-marker-alt"></i>
           <span>Map</span></a>
       </li>
@@ -273,7 +288,7 @@ $nama = $_SESSION["nama"];
 
 
             <div class="card-body">
-              <div id="petaku" style="width:460px;height:300px" class="mb-3"></div>
+              <div id="petaku" style="width:800px;height:400px" class="mb-3"></div>
               <form class="user" action="create_data2.php" method="POST">
                 <div class="form-group">
                   <input type="text" class="form-control form-control" id="id" placeholder="ID" name="id" required>
@@ -300,7 +315,7 @@ $nama = $_SESSION["nama"];
                 <div class="form-group">
                   <input type="text" class="form-control form-control" id="lng" placeholder="Longitude" name="lng" required>
                 </div>
-                <input type="submit" value="create" class="btn btn-primary">
+                <input type="submit" class="btn btn-primary" name="submit" value="Submit">
               </form>
             </div>
           </div>

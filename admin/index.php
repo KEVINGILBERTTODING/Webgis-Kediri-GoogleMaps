@@ -49,10 +49,10 @@
                         <a class="nav-link link-navbar" href="../profile.php">Profile</a>
                     </li>
                     <li class="nav-item me-2">
-                        <a class="nav-link link-navbar" href="../read.php">Data dan Informasi</a>
+                        <a class="nav-link link-navbar" href="../show.php">Data dan Informasi</a>
                     </li>
                     <li class="nav-item me-2">
-                        <a class="nav-link link-navbar" href="../map/index.php">Peta</a>
+                        <a class="nav-link link-navbar" href="../map.php">Peta</a>
                     </li>
 
                     <li class="nav-item">
