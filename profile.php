@@ -75,7 +75,7 @@
                     </div>
                     <div class="row my-4">
                         <div class="col-lg-5">
-                            <a href="read.php" class="btn btn-custom p-3 rounded shadow width-1n8x">Lihat Data</a>
+                            <a href="show.php" class="btn btn-custom p-3 rounded shadow width-1n8x">Lihat Data</a>
                         </div>
                         <div class="col-lg-7">
                             <br>

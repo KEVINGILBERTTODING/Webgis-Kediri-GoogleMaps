@@ -178,7 +178,7 @@
             </div>
 
             <div class="row my-5 justify-content-center">
-                <a href="map/index.php" class="btn btn-custom p-3 rounded shadow width-2x bold-2">Lihat Peta</a>
+                <a href="map.php" class="btn btn-custom p-3 rounded shadow width-2x bold-2">Lihat Peta</a>
             </div>
 
         </div>

@@ -46,6 +46,7 @@ if (isset($_POST['delete'])) {
                       <tr class="active">
                         <th>ID</th>
                         <th>Nama Peternakan</th>
+                        <th>Kategori Peternakan</th>
                         <th>Alamat Peternakan</th>
                         <th>Latitude</th>
                         <th>Longitude</th>
@@ -57,6 +58,7 @@ if (isset($_POST['delete'])) {
                         <tr align="left">
                           <td><?= $user->id ?></td>
                           <td><?= $user->nama ?></td>
+                          <td><?= $user->jenis ?></td>
                           <td><?= $user->alamat ?></td>
                           <td><?= $user->lat ?></td>
                           <td><?= $user->lng ?></td>

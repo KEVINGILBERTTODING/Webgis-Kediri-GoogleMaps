@@ -154,10 +154,7 @@ if (isset($_POST['submit']) and !empty($_POST['submit'])) {
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Interface:</h6>
-
-            <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
             <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
-
           </div>
         </div>
       </li>
@@ -286,9 +283,8 @@ if (isset($_POST['submit']) and !empty($_POST['submit'])) {
               <h6 class="m-0 font-weight-bold text-primary">New Data</h6>
             </div>
 
-
             <div class="card-body">
-              <div id="petaku" style="width:800px;height:400px" class="mb-3"></div>
+              <div id="petaku" style="width:1580px;height:400px" class="mb-3"></div>
               <form class="user" action="create_data2.php" method="POST">
                 <div class="form-group">
                   <input type="text" class="form-control form-control" id="id" placeholder="ID" name="id" required>
@@ -298,8 +294,8 @@ if (isset($_POST['submit']) and !empty($_POST['submit'])) {
                 </div>
 
                 <div class="form-group">
-                  <label class="control-label col-sm-2 mt-2">Kategori peternakan:<span style='color:red'>*</span></label>
-                  <div class="col-sm-5 mt-2">
+                  <label class="form-group">Kategori peternakan</label>
+                  <div class="form-group">
                     <select name="jenis" id="jenis">
                       <option value="Sapi">Sapi</option>
                       <option value="Unggas">Unggas</option>
@@ -315,6 +311,7 @@ if (isset($_POST['submit']) and !empty($_POST['submit'])) {
                 <div class="form-group">
                   <input type="text" class="form-control form-control" id="lng" placeholder="Longitude" name="lng" required>
                 </div>
+
                 <input type="submit" class="btn btn-primary" name="submit" value="Submit">
               </form>
             </div>

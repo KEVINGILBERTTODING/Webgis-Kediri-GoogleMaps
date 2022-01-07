@@ -118,10 +118,7 @@ if (isset($_GET['id'])) {
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Interface:</h6>
-
-            <a class="collapse-item" href="read.php">Populasi Ternak Sapi</a>
             <a class="collapse-item" href="read2.php">Peternakan Sapi</a>
-
           </div>
         </div>
       </li>

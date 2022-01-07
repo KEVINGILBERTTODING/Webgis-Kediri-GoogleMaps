@@ -288,7 +288,7 @@ if (isset($_POST['update']) and !empty($_POST['update'])) {
 
 
             <div class="card-body">
-              <div id="petaku" style="width:460px;height:300px" class="mb-3"></div>
+              <div id="petaku" style="width:1580px;height:400px" class="mb-3"></div>
               <form class="user" method="post">
                 <div class="form-group">
                   <input type="text" class="form-control form-control" id="id" value="<?= $user->id ?>" placeholder="ID" name="id" required>

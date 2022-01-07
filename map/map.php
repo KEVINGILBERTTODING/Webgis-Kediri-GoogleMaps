@@ -99,8 +99,8 @@ $nama = $_SESSION["nama"];
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Interface:</h6>
 
-                        <a class="collapse-item" href="../admin/read.php">Populasi Ternak Sapi</a>
-                        <a class="collapse-item" href="../admin/read2.php">Peternakan Sapi</a>
+
+                        <a class="collapse-item" href="../admin/read2.php">Peternakan</a>
 
                     </div>
                 </div>
