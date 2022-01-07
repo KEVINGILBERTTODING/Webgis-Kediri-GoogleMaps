@@ -284,7 +284,7 @@ if (isset($_POST['submit']) and !empty($_POST['submit'])) {
             </div>
 
             <div class="card-body">
-              <div id="petaku" style="width:1580px;height:400px" class="mb-3"></div>
+              <div id="petaku" style="width:1570px;height:450px" class="mb-3"></div>
               <form class="user" action="create_data2.php" method="POST">
                 <div class="form-group">
                   <input type="text" class="form-control form-control" id="id" placeholder="ID" name="id" required>
