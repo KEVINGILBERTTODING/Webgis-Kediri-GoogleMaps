@@ -91,7 +91,7 @@ if (isset($_POST['update']) and !empty($_POST['update'])) {
     }
   </script>
 
-  <title>Create New Data</title>
+  <title>Update Data</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -279,11 +279,11 @@ if (isset($_POST['update']) and !empty($_POST['update'])) {
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800"><b>Create New Data</b></h1>
+          <h1 class="h3 mb-4 text-gray-800"><b>Update Data Peternakan</b></h1>
           <!-- Basic Card Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">New Data</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Update Data</h6>
             </div>
 
 
