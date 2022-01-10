@@ -32,7 +32,7 @@ if (isset($_POST['delete'])) {
       <div class="container position-relative">
 
         <div class="row justify-content-center">
-          <h1 class="h2 bold-3 my-5 max-width-5x text-center">Data Peternakan Sapi di Kabupaten Kediri</h1>
+          <h1 class="h2 bold-3 my-5 max-width-5x text-center">Data Peternakan Sapi dan Unggas Kab. Kediri</h1>
         </div>
 
         <div class=" container mt-5">
