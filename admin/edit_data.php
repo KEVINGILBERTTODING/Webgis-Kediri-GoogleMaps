@@ -291,7 +291,7 @@ if (isset($_POST['update']) and !empty($_POST['update'])) {
               <div id="petaku" style="width:1570px;height:450px" class="mb-3"></div>
               <form class="user" method="post">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control" id="id" value="<?= $user->id ?>" placeholder="ID" name="id" required disabled>
+                  <input type="text" class="form-control form-control" id="id" value="<?= $user->id ?>" placeholder="ID" name="id" required readonly>
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control form-control" id="nama" value="<?= $user->nama ?>" placeholder="Nama Peternakan" name="nama" required>
