@@ -30,7 +30,7 @@ class Db_Class
     // Fungsi untuk menampilkan seluruh isi table
     function getPoint()
     {
-        $sql = "select *from public." . $this->table_name;
+        $sql = "select * from peternakan1 ORDER BY id";
         return pg_query($sql);
     }
 
@@ -57,7 +57,6 @@ class Db_Class
 
         $lat = $_POST['lat'];
         $lng = $_POST['lng'];
-
         $sql = "update peternakan1 set id='" . $this->cleanData($_POST['id']) . "',nama='" . $this->cleanData($_POST['nama']) . "', jenis='" . $this->cleanData($_POST['jenis']) . "', alamat='" . $this->cleanData($_POST['alamat']) . "', lat='" . $this->cleanData($_POST['lat']) . "', lng='" . $this->cleanData($_POST['lng']) . "' ,geom= ST_GeomFromText('POINT($lng $lat)', 4326)  where id = '" . $this->cleanData($_POST['id']) . "' ";
         return pg_affected_rows(pg_query($sql));
     }
